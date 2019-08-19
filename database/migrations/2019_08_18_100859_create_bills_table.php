@@ -19,7 +19,7 @@ class CreateBillsTable extends Migration
             $table->dateTime('date_oder');
             $table->float('total');
             $table->string('payment', 200);
-            $table->string('note, 500');
+            $table->string('note', 500);
             $table->timestamps();
         });
     }
