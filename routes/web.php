@@ -18,3 +18,28 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('index', [
+	'as' => 'trang-chu',
+	'uses' => 'PageController@getIndex'
+]);
+
+Route::get('product-type',[
+	'as' => 'producttype',
+	'uses' => 'PageController@getProductType'
+]);
+
+Route::get('product-detail',[
+	'as' => 'productdetail',
+	'uses' => 'PageController@getProductDetail'
+]);
+
+Route::get('contact',[
+	'as' => 'contact',
+	'uses' => 'PageController@getContact'
+]);
+
+Route::get('about',[
+	'as' => 'about',
+	'uses' => 'PageController@getAbout'
+]);
