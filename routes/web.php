@@ -43,3 +43,5 @@ Route::get('about',[
 	'as' => 'about',
 	'uses' => 'PageController@getAbout'
 ]);
+
+Route::get('/admin', 'Admin\AdminController@index');
