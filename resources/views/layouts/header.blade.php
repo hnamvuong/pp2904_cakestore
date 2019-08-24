@@ -3,7 +3,7 @@
 			<div class="container">
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
-						<li><a href=""><i class="fa fa-home"></i> Hadico Tower, Phạm Hùng, Q. Nam Từ Liêm</a></li>
+						<li><a href=""><i class="fa fa-home"></i> Hadico Tower, Phạm Hùng, Q. Nam Từ Liêm, HN</a></li>
 						<li><a href=""><i class="fa fa-phone"></i> 0968 134 061</a></li>
 					</ul>
 				</div>
