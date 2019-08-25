@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slide;
 use App\Models\Product;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -16,8 +17,13 @@ class PageController extends Controller
     	return view('welcome', compact('slide', 'new_product', 'sale_product'));
     }
 
-    public function getProductType() {
-    	return view('producttype.product_type');
+    public function getProductType($type) {
+        $sp_theoloai = Product::where('id_type', $type)->get();
+        $sp_khac = Product::where('id_type', '<>', $type)->paginate(3);
+        $loai = ProductType::all();
+        $loai_sp = ProductType::where('id', $type)->first();
+
+    	return view('producttype.product_type', compact('sp_theoloai', 'sp_khac', 'loai', 'loai_sp'));
     }
 
     public function getProductDetail() {
