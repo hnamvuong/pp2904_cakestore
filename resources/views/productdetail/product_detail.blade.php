@@ -50,7 +50,7 @@
 								<option value="4">4</option>
 								<option value="5">5</option>
 							</select>
-							<a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+							<a class="add-to-cart" href="{{route('themgiohang', $sanpham->id)}}"><i class="fa fa-shopping-cart"></i></a>
 							<div class="clearfix"></div>
 						</div>
 					</div>
@@ -89,8 +89,8 @@
 									</p>
 								</div>
 								<div class="single-item-caption">
-									<a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-									<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+									<a class="add-to-cart pull-left" href="{{route('themgiohang', $sptt->id)}}"><i class="fa fa-shopping-cart"></i></a>
+									<a class="beta-btn primary" href="{{route('productdetail', $sptt->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
 									<div class="clearfix"></div>
 								</div>
 							</div>
