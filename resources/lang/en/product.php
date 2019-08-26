@@ -22,7 +22,9 @@ return [
     'action' => 'Action',
     'list' => 'Product List',
     'add_new' => 'New Product',
-
+    'edit' => 'Edit Product',
+    'delete' => 'Delete Product',
+    
     //Create View
     'alert' => 'Add a new product by using the following form',
     'id_type' => 'IdType',
@@ -31,4 +33,8 @@ return [
     'new' => 'New',
     'submit' => 'Submit',
     'cancel' => 'Cancel',
+
+    //Edit View
+    'alert_edit' => 'Edit product by using the following form',
+    'update' => 'Update',
 ];

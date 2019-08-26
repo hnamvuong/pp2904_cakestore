@@ -3,8 +3,12 @@
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper" style="width: 1400px;">
     <!-- BEGIN: Subheader -->
-    <div class="m-subheader ">
-
+    <div class="m-subheader">
+        @if (session('status'))
+        <div class="alert m-alert m-alert--default alert alert-success" style="position: relative;top: 60px;">
+            {{ session('status') }}
+        </div>
+        @endif
     </div>
     <!-- END: Subheader -->
     <div class="m-content">                     
@@ -20,7 +24,7 @@
                 <div class="m-portlet__head-tools">
                     <ul class="m-portlet__nav">
                         <li class="m-portlet__nav-item">
-                            <a href="{{ route('product.index') }}" class="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--icon m-btn--air">
+                            <a href="{{ route('product.create') }}" class="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--icon m-btn--air">
                                 <span>
                                     <i class="la la-plus"></i>
                                     <span>{{ trans('product.add_new') }}</span>
@@ -80,9 +84,9 @@
                                     @foreach ($products as $product)
                                     <tr role="row" class="odd">
                                         <td>    
-                                            <div ><img src="{!! $product->image !!}" style="height: 100px; width: 100%;"></div>               
+                                            <div ><img src="{!! $product->image !!}" style="height: 100px; width: 100%;"></div>             
                                         </td>
-                                        <td><a class="m-link" href="mailto:adingate15@furl.net">{!! $product->name !!}</a></td>
+                                        <td><a class="m-link" href="{{ action('Admin\ProductController@show', $product->id) }}">{!! $product->name !!}</a></td>
                                         <td>{!! $product->unit_price !!}</td>
                                         <td>{!! $product->unit !!}</td>
                                         <td><span class="m-badge  m-badge--info m-badge--wide">{!! $product->created_at->format('m/d/Y') !!}</span></td>
@@ -93,9 +97,13 @@
                                                     <i class="la la-ellipsis-h"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                                    <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
-                                                    <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
+                                                    <div>
+                                                        <a class="dropdown-item" href="{{ action('Admin\ProductController@edit', $product->id) }}"><i class="la la-edit"></i>{{ trans('product.edit') }}</a>
+                                                    </div>
+                                                    <form method="post" action="{{ action('Admin\ProductController@destroy', $product->id) }}">
+                                                        @csrf
+                                                        <button class="la la-leaf dropdown-item" style="background-color: white; border:none;">{{ trans('product.delete') }}</button>
+                                                    </form>
                                                 </div>
                                             </span>
                                             <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
@@ -106,7 +114,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $products->links()}}
+                            {{ $products->links() }}
                         </div>
                     </div>
                 </div>

@@ -17,47 +17,55 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', [
-	'as' => 'trang-chu',
-	'uses' => 'PageController@getIndex'
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getIndex'
 ]);
 
 Route::get('product-type/{type}',[
-	'as' => 'producttype',
-	'uses' => 'PageController@getProductType'
+    'as' => 'producttype',
+    'uses' => 'PageController@getProductType'
 ]);
 
 Route::get('/product-detail/{id}',[
-	'as' => 'productdetail',
-	'uses' => 'PageController@getProductDetail'
+    'as' => 'productdetail',
+    'uses' => 'PageController@getProductDetail'
 ]);
 
 Route::get('/contact',[
-	'as' => 'contact',
-	'uses' => 'PageController@getContact'
+    'as' => 'contact',
+    'uses' => 'PageController@getContact'
 ]);
 
 Route::get('/about',[
-	'as' => 'about',
-	'uses' => 'PageController@getAbout'
+    'as' => 'about',
+    'uses' => 'PageController@getAbout'
 ]);
 
 Route::group([
-    'prefix' => 'admin',
+    'prefix' => 'admin/products',
     'namespace' => 'Admin'
 ], function() {
-    Route::resource('/product', 'ProductController')->names([
-    	'create' => 'product.index'
-    ]);
+    Route::get('/', 'ProductController@index');
+    
+    Route::get('/create', 'ProductController@create')->name('product.create');
+    Route::post('/create', 'ProductController@store');
+
+    Route::get('/{id?}', 'ProductController@show');
+
+    Route::get('/{id?}/edit', 'ProductController@edit');
+    Route::post('/{id?}/edit', 'ProductController@update');
+
+    Route::post('/{id?}/delete', 'ProductController@destroy');
 });
 
 Route::get('/admin', 'Admin\AdminController@index');
 
 Route::get('add-to-cart/{id}', [
-	'as' => 'themgiohang',
-	'uses' => 'PageController@getAddtoCart'
+    'as' => 'themgiohang',
+    'uses' => 'PageController@getAddtoCart'
 ]);
 
 Route::get('del-cart/{id}', [
-	'as' => 'xoagiohang', 
-	'uses' => 'PageController@getDelItemCart'
+    'as' => 'xoagiohang', 
+    'uses' => 'PageController@getDelItemCart'
 ]);

@@ -40,7 +40,7 @@ class ProductController extends Controller
     public function store(ProductFormRequest $request)
     {
         $product = Product::create([
-            'name' => $request->get('product_name'),
+            'name' => $request->get('name'),
             'id_type' => $request->get('id_type'),
             'description' => $request->get('description'),
             'unit_price' => $request->get('unit_price'),
@@ -50,7 +50,7 @@ class ProductController extends Controller
             'new' => $request->get('new')
         ]);
 
-        return redirect('/admin/product/create')->with('status', 'A new product has been created!');
+        return redirect('/admin/products/create')->with('status', 'A new product has been created!');
     }
 
     /**
@@ -61,7 +61,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('backend.products.show', compact('product'));
     }
 
     /**
@@ -72,7 +74,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('backend.products.edit', compact('product'));
     }
 
     /**
@@ -82,9 +86,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductFormRequest $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->name = $request->get('name');
+        $product->id_type = $request->get('id_type');
+        $product->description = $request->get('description');
+        $product->unit_price = $request->get('unit_price');
+        $product->promotion_price = $request->get('promotion_price');
+        $product->image = $request->get('image');
+        $product->unit = $request->get('unit');
+        $product->new = $request->get('new');
+
+        $product->save();
+
+        return redirect(action('Admin\ProductController@edit', $product->id))->with('status', 'The product has been updated');
     }
 
     /**
@@ -95,6 +112,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->delete();
+
+        return redirect('admin/products')->with('status', 'The product '.$product->name.' has been deleted!');
     }
 }
