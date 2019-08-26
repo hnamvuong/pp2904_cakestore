@@ -20,6 +20,8 @@ return [
     'created_at' => 'Ngày Thêm',
     'updated_at' => 'Ngày Cập Nhật',
     'action' => 'Thao Tác',
+    'edit' => 'Chỉnh sửa',
+    'delete' => 'Xóa sản phẩm',
 
     //Create View
     'alert' => 'Thêm sản phẩm mới bằng cách sử dụng biểu mẫu bên dưới',
@@ -29,4 +31,8 @@ return [
     'new' => 'Mới',
     'submit' => 'Tạo mới',
     'cancel' => 'Hủy bỏ',
+
+    //Edit View
+    'alert_edit' => 'Sửa sản phẩm bằng bảng dưới',
+    'update' => 'Cập nhật',
 ];
