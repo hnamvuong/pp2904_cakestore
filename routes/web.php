@@ -41,6 +41,17 @@ Route::get('/about',[
 	'uses' => 'PageController@getAbout'
 ]);
 
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin'
+], function() {
+    Route::resource('/product', 'ProductController')->names([
+    	'create' => 'product.index'
+    ]);
+});
+
+Route::get('/admin', 'Admin\AdminController@index');
+
 Route::get('add-to-cart/{id}', [
 	'as' => 'themgiohang',
 	'uses' => 'PageController@getAddtoCart'
