@@ -43,7 +43,8 @@ Route::get('/about',[
 
 Route::group([
     'prefix' => 'admin/products',
-    'namespace' => 'Admin'
+    'namespace' => 'Admin',
+    'middleware' => 'manager'
 ], function() {
     Route::get('/', 'ProductController@index');
     

@@ -218,7 +218,11 @@
                                                     </a>
                                                 </li>                                               
                                                 <li class="m-nav__item">
-                                                    <a href="snippets/pages/user/login-1.html" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" style="position: relative;left: 100px; top: 10px;">{{ trans('auth.logout') }}</a>
+                                                    <form method="post" action="{{ action('Auth\LoginController@logout') }}">
+                                                        @csrf
+                                                        <button class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" style="position: relative;left: 100px; top: 10px;">{{ trans('auth.logout') }}</button>
+                                                    </form>
+                                                    
                                                 </li>
                                             </ul>
                                         </div>
