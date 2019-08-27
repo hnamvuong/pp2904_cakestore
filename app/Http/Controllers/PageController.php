@@ -6,6 +6,9 @@ use App\Models\Slide;
 use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\Cart;
+use App\Models\Customer;
+use App\Models\Bill;
+use App\Models\BillDetail;
 use Session;
 use Illuminate\Http\Request;
 
@@ -65,5 +68,41 @@ class PageController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function getCheckout() {
+        return view('checkout.checkout');
+    }
+
+    public function postCheckout(Request $request) {
+        $cart = Session::get('cart');
+
+        $customer = new Customer;
+        $customer->name = $request->name;
+        $customer->gender = $request->gender;
+        $customer->email = $request->email;
+        $customer->address = $request->address;
+        $customer->phone_number = $request->phone_number;
+        $customer->note = $request->notes;
+        $customer->save();
+
+        $bill = new Bill;
+        $bill->id_customer = $customer->id;
+        $bill->date_oder = date('Y-m-d');
+        $bill->total = $cart->totalPrice;
+        $bill->payment = $request->payment_method;
+        $bill->note = $request->notes;
+        $bill->save();
+
+        foreach ($cart->items as $key => $value) {
+            $bill_detail = new BillDetail;
+            $bill_detail->id_bill = $bill->id;
+            $bill_detail->id_product = $key;
+            $bill_detail->quantity = $value['qty'];
+            $bill_detail->unit_price = ($value['price']/$value['qty']);
+            $bill_detail->save();
+        }
+        Session::forget('cart');
+        return redirect()->back()->with('thongbao', 'Đặt hàng thành công');
     }
 }
