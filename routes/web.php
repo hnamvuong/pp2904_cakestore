@@ -80,3 +80,12 @@ Route::post('dat-hang', [
 	'as' => 'dathang',
 	'uses' => 'PageController@postCheckout'
 ]);
+
+Route::get('search', [
+	'as' => 'search',
+	'uses' => 'PageController@getSearch'
+]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

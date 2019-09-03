@@ -105,4 +105,10 @@ class PageController extends Controller
         Session::forget('cart');
         return redirect()->back()->with('thongbao', 'Đặt hàng thành công');
     }
+
+    public function getSearch(Request $request){
+        $product = Product::where('name', 'like', '%'.$request->key.'%')->orWhere('unit_price', $request->key)->get();
+
+        return view('search.search', compact('product'));
+    }
 }
