@@ -71,62 +71,34 @@
                             <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 976px;">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 117.25px;" aria-sort="ascending" aria-label="Agent: activate to sort column descending">{{ trans('product.img') }}</th>
-                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 117.25px;" aria-label="CompanyEmail: activate to sort column ascending">{{ trans('product.name') }}</th>
-                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 105.25px;" aria-label="CompanyAgent: activate to sort column ascending">{{ trans('product.unit_price') }}</th>
-                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 120.25px;" aria-label="CompanyName: activate to sort column ascending">{{ trans('product.unit') }}</th>
-                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 120.25px;" aria-label="Status: activate to sort column ascending">{{ trans('product.created_at') }}</th>
-                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 120.25px;" aria-label="Type: activate to sort column ascending">{{ trans('product.updated_at') }}</th>
-                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 69.5px;" aria-label="Actions">{{ trans('product.action') }}</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 117.25px;" aria-sort="ascending" aria-label="Agent: activate to sort column descending">{{ trans('order.id_bill') }}</th>
+                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 117.25px;" aria-label="CompanyEmail: activate to sort column ascending">{{ trans('customer.name') }}</th>
+                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 105.25px;" aria-label="CompanyAgent: activate to sort column ascending">{{ trans('order.total') }}</th>
+                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 120.25px;" aria-label="CompanyName: activate to sort column ascending">{{ trans('customer.phone') }}</th>
+                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 120.25px;" aria-label="Status: activate to sort column ascending">{{ trans('order.date_order') }}</th>
+                                        <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 120.25px;" aria-label="Status: activate to sort column ascending">{{ trans('order.note') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @foreach ($orders as $order)
                                     <tr role="row" class="odd">
-                                        <td>    
-                                            <div ><img src="{!! $product->image !!}" style="height: 100px; width: 100%;"></div>             
-                                        </td>
-                                        <td><a class="m-link" href="{{ action('Admin\ProductController@show', $product->id) }}">{!! $product->name !!}</a></td>
-                                        <td>{!! $product->unit_price !!}</td>
-                                        <td>{!! $product->unit !!}</td>
+                                        <td><a class="m-link" href="{{ action('Admin\OrdersController@show', $order->id) }}">{!! $order->id !!}</a></td>
+                                        <td>{!! $order->customer->name !!}</td>
+                                        <td>{!! $order->total !!}</td>
+                                        <td>{!! $order->customer->phone_number !!}</td>
                                         <td>
-                                            @if (!isset($product->created_at))
+                                            @if (!isset($order->date_oder))
                                             <span class="m-badge  m-badge--info m-badge--wide">{{ trans('admin.create_date') }}</span>
                                             @else
-                                            <span class="m-badge  m-badge--info m-badge--wide">{!! $product->created_at->format('m/d/Y') !!}</span>
+                                            <span class="m-badge  m-badge--info m-badge--wide">{!! Carbon\Carbon::parse($order->date_oder)->format('d-m-Y') !!}</span>
                                             @endif
                                         </td>
-                                        <td>
-                                            @if (!isset($product->updated_at))
-                                            <span class="m-badge  m-badge--info m-badge--wide">{{ trans('admin.no_update') }}</span>
-                                            @else
-                                            <span class="m-badge  m-badge--info m-badge--wide">{!! $product->updated_at->format('m/d/Y') !!}</span>
-                                            @endif
-                                        </td>
-                                        <td nowrap="">
-                                            <span class="dropdown">
-                                                <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-                                                    <i class="la la-ellipsis-h"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <div>
-                                                        <a class="dropdown-item" href="{{ action('Admin\ProductController@edit', $product->id) }}"><i class="la la-edit"></i>{{ trans('product.edit') }}</a>
-                                                    </div>
-                                                    <form method="post" action="{{ action('Admin\ProductController@destroy', $product->id) }}">
-                                                        @csrf
-                                                        <button class="la la-leaf dropdown-item" style="background-color: white; border:none;">{{ trans('product.delete') }}</button>
-                                                    </form>
-                                                </div>
-                                            </span>
-                                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-                                                <i class="la la-edit"></i>
-                                            </a>
-                                        </td>
+                                        <td>{!! $order->note !!}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $products->links() }}
+                            {{ $orders->links() }}
                         </div>
                     </div>
                 </div>
