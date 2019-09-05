@@ -41,6 +41,8 @@ Route::get('/about',[
     'uses' => 'PageController@getAbout'
 ]);
 
+Route::get('/admin', 'Admin\AdminController@index'); 
+
 Route::group([
     'prefix' => 'admin/products',
     'namespace' => 'Admin',
@@ -59,7 +61,23 @@ Route::group([
     Route::post('/{id?}/delete', 'ProductController@destroy');
 });
 
-Route::get('/admin', 'Admin\AdminController@index');
+Route::group([
+    'prefix' => 'admin/orders',
+    'namespace' => 'Admin',
+    'middleware' => 'manager'
+], function() {
+    Route::get('/', 'OrdersController@index');
+    
+    Route::get('/create', 'OrdersController@create')->name('product.create');
+    Route::post('/create', 'OrdersController@store');
+
+    Route::get('/{id?}', 'OrdersController@show');
+
+    Route::get('/{id?}/edit', 'OrdersController@edit');
+    Route::post('/{id?}/edit', 'OrdersController@update');
+
+    Route::post('/{id?}/delete', 'OrdersController@destroy');
+});
 
 Route::get('add-to-cart/{id}', [
     'as' => 'themgiohang',
@@ -72,13 +90,13 @@ Route::get('del-cart/{id}', [
 ]);
 
 Route::get('dat-hang', [
-	'as' => 'dathang',
-	'uses' => 'PageController@getCheckout'
+    'as' => 'dathang',
+    'uses' => 'PageController@getCheckout'
 ]);
 
 Route::post('dat-hang', [
-	'as' => 'dathang',
-	'uses' => 'PageController@postCheckout'
+    'as' => 'dathang',
+    'uses' => 'PageController@postCheckout'
 ]);
 
 Route::get('search', [

@@ -97,7 +97,7 @@
                                             <ul class="m-menu__content">
                                                 <li class="m-menu__item">
                                                     <ul class="m-menu__inner">
-                                                        <li class="m-menu__item "  m-menu-link-redirect="1" aria-haspopup="true"><a  href="inner.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-map"></i><span class="m-menu__link-text">{{ trans('admin.manage_orders') }}</span></a></li>
+                                                        <li class="m-menu__item "  m-menu-link-redirect="1" aria-haspopup="true"><a  href="{{ action('Admin\OrdersController@index') }}" class="m-menu__link "><i class="m-menu__link-icon flaticon-map"></i><span class="m-menu__link-text">{{ trans('admin.manage_orders') }}</span></a></li>
                                                         <li class="m-menu__item "  m-menu-link-redirect="1" aria-haspopup="true"><a  href="inner.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-clipboard"></i><span class="m-menu__link-text">{{ trans('admin.order_reports') }}</span></a></li>
                                                     </ul>
                                                 </li>

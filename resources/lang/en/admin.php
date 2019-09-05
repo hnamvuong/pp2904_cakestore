@@ -30,5 +30,7 @@ return [
     'finance_reports' => 'Finance Reports',
     'orders' => 'Orders',
     'manage_orders' => 'Manage Orders',
-    'order_reports' => 'Order Reports'
+    'order_reports' => 'Order Reports',
+    'create_date' => '20-09-2019',
+    'no_update' => 'No Update',
 ];
