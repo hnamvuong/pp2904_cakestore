@@ -63,7 +63,9 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-3">
-                            <div id="m_table_1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="m_table_1"></label></div>
+                            <div id="m_table_1_filter" class="dataTables_filter">
+                                <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="m_table_1"></label>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -84,7 +86,7 @@
                                     @foreach ($products as $product)
                                     <tr role="row" class="odd">
                                         <td>    
-                                            <div ><img src="{!! $product->image !!}" style="height: 100px; width: 100%;"></div>             
+                                            <div ><img src="{{ asset('/source/image/product/' . $product->image) }}" style="height: 100px; width: 100%;"></div>             
                                         </td>
                                         <td><a class="m-link" href="{{ action('Admin\ProductController@show', $product->id) }}">{!! $product->name !!}</a></td>
                                         <td>{!! $product->unit_price !!}</td>
