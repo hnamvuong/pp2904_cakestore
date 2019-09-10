@@ -33,4 +33,5 @@ return [
     'order_reports' => 'Order Reports',
     'create_date' => '20-09-2019',
     'no_update' => 'No Update',
+    'manage_users' => 'Manage Users'
 ];

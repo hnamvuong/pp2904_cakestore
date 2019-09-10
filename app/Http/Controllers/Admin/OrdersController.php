@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Bill;
 use App\Models\Customer;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -87,5 +89,14 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSearch(Request $request){
+        $orders = DB::table('customers')
+                    ->rightjoin('bills', 'bills.id_customer', '=', 'customers.id')
+                    ->where('name', 'like', '%'.$request->key.'%')
+                    ->paginate(5);
+        
+        return view('backend.orders.search', compact('orders'));
     }
 }

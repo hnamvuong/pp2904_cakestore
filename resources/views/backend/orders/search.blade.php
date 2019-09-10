@@ -17,7 +17,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            {{ trans('order.list') }}
+                            {{ trans('product.list') }}
                         </h3>
                     </div>
                 </div>
@@ -90,9 +90,9 @@
                                     @foreach ($orders as $order)
                                     <tr role="row" class="odd">
                                         <td><a class="m-link" href="{{ action('Admin\OrdersController@show', $order->id) }}">{!! $order->id !!}</a></td>
-                                        <td>{!! $order->customer->name !!}</td>
+                                        <td>{!! $order->name !!}</td>
                                         <td>{!! $order->total !!}</td>
-                                        <td>{!! $order->customer->phone_number !!}</td>
+                                        <td>{!! $order->phone_number !!}</td>
                                         <td>
                                             @if (!isset($order->date_oder))
                                             <span class="m-badge  m-badge--info m-badge--wide">{{ trans('admin.create_date') }}</span>

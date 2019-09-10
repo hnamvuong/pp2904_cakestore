@@ -118,4 +118,10 @@ class ProductController extends Controller
 
         return redirect('admin/products')->with('status', 'The product '.$product->name.' has been deleted!');
     }
+
+    public function getSearch(Request $request){
+        $products = Product::where('name', 'like', '%'.$request->key.'%')->orWhere('unit_price', $request->key)->paginate(5);
+
+        return view('backend.products.index', compact('products'));
+    }
 }

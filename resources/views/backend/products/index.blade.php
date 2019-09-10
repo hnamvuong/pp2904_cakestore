@@ -64,7 +64,12 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div id="m_table_1_filter" class="dataTables_filter">
-                                <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="m_table_1"></label>
+                                <label>Search:
+                                    <form method="get" action="{{ action('Admin\ProductController@getSearch') }}">
+                                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="m_table_1" name="key">
+                                        <button class="fa fa-search" type="submit" id="searchsubmit" style="position: absolute; left: 194px; bottom: 8px; padding-top: 5px; padding-bottom: 7px; background-color: white;"></button>
+                                    </form>
+                                </label>
                             </div>
                         </div>
                     </div>
