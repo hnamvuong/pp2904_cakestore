@@ -17,5 +17,6 @@ return [
     'id_customer' => 'ID Customer',
     'total' => 'Total',
     'date_order' => 'Date Order',
-    'note' => 'Note'
+    'note' => 'Note',
+    'list' => 'Order List'
 ];

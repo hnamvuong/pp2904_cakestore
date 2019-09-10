@@ -49,6 +49,8 @@ Route::group([
     'middleware' => 'manager'
 ], function() {
     Route::get('/', 'ProductController@index');
+
+    Route::get('/search', 'ProductController@getSearch');
     
     Route::get('/create', 'ProductController@create')->name('product.create');
     Route::post('/create', 'ProductController@store');
@@ -67,6 +69,8 @@ Route::group([
     'middleware' => 'manager'
 ], function() {
     Route::get('/', 'OrdersController@index');
+
+    Route::get('/search', 'OrdersController@getSearch');
     
     Route::get('/create', 'OrdersController@create')->name('product.create');
     Route::post('/create', 'OrdersController@store');
@@ -103,5 +107,3 @@ Route::get('search', [
 	'as' => 'search',
 	'uses' => 'PageController@getSearch'
 ]);
-
-Route::get('/home', 'HomeController@index')->name('home');
