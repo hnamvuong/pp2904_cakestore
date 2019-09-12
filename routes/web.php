@@ -72,7 +72,7 @@ Route::group([
 
     Route::get('/search', 'OrdersController@getSearch');
     
-    Route::get('/create', 'OrdersController@create')->name('product.create');
+    Route::get('/create', 'OrdersController@create');
     Route::post('/create', 'OrdersController@store');
 
     Route::get('/{id?}', 'OrdersController@show');
@@ -106,4 +106,9 @@ Route::post('dat-hang', [
 Route::get('search', [
 	'as' => 'search',
 	'uses' => 'PageController@getSearch'
+]);
+
+Route::get('member',[
+    'as' => 'member',
+    'uses' => 'MemberController@index'
 ]);

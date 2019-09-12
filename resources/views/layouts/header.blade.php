@@ -9,9 +9,27 @@
 				</div>
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
-						<li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
+					@if(Auth::check())
+						@if(Auth::user()->name == "Admin")
+							<li><a href="admin/products">Chào bạn {{Auth::user()->name}}</a></li>
+							<li>
+								<form method="post" action="{{ action('Auth\LoginController@logout') }}">
+		                            @csrf
+		                            <button class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" style="height: 47px;">Đăng xuất</button>
+		                        </form>
+							</li>
+						@else
+							<li><a href="{{route('member')}}">Chào bạn {{Auth::user()->name}}</a></li>
+							<li>
+								<form method="post" action="{{ action('Auth\LoginController@logout') }}">
+		                            @csrf
+		                            <button class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" style="height: 47px;">Đăng xuất</button>
+		                        </form>
+		                @endif
+					@else
 						<li><a href="/register">Đăng kí</a></li>
 						<li><a href="/login">Đăng nhập</a></li>
+					@endif	
 					</ul>
 				</div>
 				<div class="clearfix"></div>
