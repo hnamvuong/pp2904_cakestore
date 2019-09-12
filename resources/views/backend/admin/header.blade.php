@@ -100,8 +100,8 @@
             </div>
             <div class="m-stack__item m-stack__item--middle m-stack__item--center">
                 <!-- BEGIN: Brand -->
-                <a href="index.html" class="m-brand m-brand--desktop">
-                    <img alt="" src="{{ asset('assets/demo/demo9/media/img/logo/logo.png') }}"/>
+                <a href="{{route('trang-chu')}}" class="m-brand m-brand--desktop">
+                    <img style="width: 150px; height: 50px" alt="" src="{{ asset('source/assets/dest/images/logo-cake.png') }}"/>
                 </a>
                 <!-- END: Brand -->         
             </div>
@@ -171,8 +171,8 @@
                                                 <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt=""/>
                                             </div>
                                             <div class="m-card-user__details">
-                                                <span class="m-card-user__name m--font-weight-500">Mark Andre</span>
-                                                <a href="" class="m-card-user__email m--font-weight-300 m-link">mark.andre@gmail.com</a>
+                                                <span class="m-card-user__name m--font-weight-500">{{Auth::user()->name}}</span>
+                                                <a href="" class="m-card-user__email m--font-weight-300 m-link">{{Auth::user()->email}}</a>
                                             </div>
                                         </div>
                                     </div>
