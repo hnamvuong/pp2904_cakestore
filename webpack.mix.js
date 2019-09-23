@@ -23,5 +23,6 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('resources/assets/app/js/dashboard.js', 'public/assets/app/js/dashboard.js')
     .copy('resources/assets/demo/demo9/media/img/logo/logo.png', 'public/assets/demo/demo9/media/img/logo/logo.png')
     .copy('resources/assets/app/media/img/users/user4.jpg', 'public/assets/app/media/img/users/user4.jpg')
-    .copyDirectory('resources/assets/vendors', 'public/assets/vendors');
+    .copy('resources/css/croppie.css', 'public/css/croppie.css')
+    .copyDirectory('resources/admin', 'public/admin');
     
