@@ -112,3 +112,8 @@ Route::get('member',[
     'as' => 'member',
     'uses' => 'MemberController@index'
 ]);
+
+Route::get('order-history', [
+    'as' => 'orderhistory',
+    'uses' => 'MemberController@getOrderHistory'
+]);

@@ -7,7 +7,7 @@
     </div>
 
     <!--begin::Form-->
-    <form class="m-form m-form--fit m-form--label-align-right" method="post" action="/admin/products">
+    <form class="m-form m-form--fit m-form--label-align-right" method="post" >
         @csrf
         @foreach ($errors->all() as $error)
         <div class="alert m-alert m-alert--default alert alert-danger m--margin-top-10">

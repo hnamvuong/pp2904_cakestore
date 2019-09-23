@@ -154,7 +154,7 @@
                         </li>
                         <li class="m-nav__item m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
                             <a href="#" class="m-nav__link m-dropdown__toggle">
-                                <span class="m-topbar__username m--hidden-mobile">Admin</span>
+                                <span class="m-topbar__username m--hidden-mobile">{{Auth::user()->name}}</span>
                                 <span class="m-topbar__userpic">
                                     <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
                                 </span>
@@ -187,7 +187,7 @@
                                                         <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                         <span class="m-nav__link-title">
                                                             <span class="m-nav__link-wrap">
-                                                                <span class="m-nav__link-text">My Profile</span>
+                                                                <span class="m-nav__link-text">Change Password</span>
                                                             </span>
                                                         </span>
                                                     </a>
@@ -195,15 +195,9 @@
                                                 <li class="m-nav__item">
                                                     <a href="profile.html" class="m-nav__link">
                                                         <i class="m-nav__link-icon flaticon-share"></i>
-                                                        <span class="m-nav__link-text">Activity</span>
+                                                        <span class="m-nav__link-text">Reset Password</span>
                                                     </a>
-                                                </li>
-                                                <li class="m-nav__item">
-                                                    <a href="profile.html" class="m-nav__link">
-                                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                        <span class="m-nav__link-text">Messages</span>
-                                                    </a>
-                                                </li>                                               
+                                                </li>                                              
                                                 <li class="m-nav__item">
                                                     <form method="post" action="{{ action('Auth\LoginController@logout') }}">
                                                         @csrf
