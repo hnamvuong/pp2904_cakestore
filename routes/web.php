@@ -51,6 +51,12 @@ Route::group([
         'products' => 'ProductController',
         'categories' => 'CategoryController',
         'orders' => 'OrderController',
+        'users' => 'UserController',
+    ]);
+
+    Route::post('/usersearch', [
+        'as' => 'usersearch',
+        'uses' => 'UserController@getSearch'
     ]);
 });
 
