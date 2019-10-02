@@ -15,9 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('name', '!=', 'admin')->get();
+        $users = User::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.member.index', compact('users'));
     }
 
     /**
@@ -84,5 +84,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSearch(Request $request)
+    {
+        $users = User::search($request->search)->get();
+
+        return view('admin.member.index', compact('users'));
     }
 }

@@ -19,7 +19,7 @@ class BillDetail extends Model
     ];
 
     public function product() {
-    	return $this->belongsTo(Product::class, 'id_p  roduct', 'id')->withTrashed();
+    	return $this->belongsTo(Product::class, 'id_product', 'id')->withTrashed();
     }
 
     public function bill() {
