@@ -13,13 +13,11 @@ return [
     |
     */
 
-    'id_bill' => 'ID Bill',
-    'id_customer' => 'ID Customer',
-    'total' => 'Total',
-    'date_order' => 'Date Order',
-    'note' => 'Note',
-    'list' => 'Order List',
-    'payment' => 'Payment',
-    'status' => 'Status',
-    'subheader_order' => 'Order'
+    'subheader_category' => 'Category',
+    'list' => 'Category List',
+    'new' => 'New Category',
+    'id' => 'Category ID',
+    'category\'s_product' => 'Category\'s Products',
+    'name' => 'Category Name',
+    'description' => 'Description',
 ];

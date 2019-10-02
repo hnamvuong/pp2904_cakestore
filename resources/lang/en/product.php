@@ -12,29 +12,26 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    //Header Index View
-    'img' => 'Image',
-    'name' => 'ProductName',
-    'unit_price' => 'UnitPrice',
+    //Index View
+    'image' => 'Image',
+    'name' => 'Product Name',
+    'unit_price' => 'Unit Price',
     'unit' => 'Unit',
-    'created_at' => 'CreatedAt',
-    'updated_at' => 'UpdatedAt',
-    'action' => 'Action',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
     'list' => 'Product List',
     'add_new' => 'New Product',
-    'edit' => 'Edit Product',
-    'delete' => 'Delete Product',
-    
+    'id' => 'ID',
+    'subheader_product' => 'Product',
+    'category_name' => 'Category Name',
+
     //Create View
     'alert' => 'Add a new product by using the following form',
     'id_type' => 'IdType',
     'description' => 'Description',
-    'promotion_price' => 'PromotionPrice',
+    'promotion_price' => 'Promotion Price',
     'new' => 'New',
-    'submit' => 'Submit',
-    'cancel' => 'Cancel',
 
     //Edit View
     'alert_edit' => 'Edit product by using the following form',
-    'update' => 'Update',
 ];

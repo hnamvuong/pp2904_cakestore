@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Bill;
 use App\Models\Customer;
+use App\Models\BillDetail;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +20,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Bill::paginate(5);
+        $orders = Bill::with('customer')->get();
 
-        return view('backend.orders.index', compact('orders'));
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -52,9 +54,10 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $order = Bill::find($id);
-        
-        return view('backend.orders.invoice', compact('order'));
+        $order = Bill::with(['bill_detail.product', 'customer'])->find($id);
+        $bill_details = $order->bill_detail;
+    
+        return view('admin.orders.invoice', compact('order', 'bill_details'));
     }
 
     /**
@@ -89,14 +92,5 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getSearch(Request $request){
-        $orders = DB::table('customers')
-                    ->rightjoin('bills', 'bills.id_customer', '=', 'customers.id')
-                    ->where('name', 'like', '%'.$request->key.'%')
-                    ->paginate(5);
-        
-        return view('backend.orders.search', compact('orders'));
     }
 }
