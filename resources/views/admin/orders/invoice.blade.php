@@ -52,7 +52,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($order->bill_detail as $bill_detail)
+                                    @foreach ($bill_details as $bill_detail)
                                     <tr>
                                         <td>{{ $bill_detail->product->name }}</td>
                                         <td>{{ $bill_detail->quantity }}</td>

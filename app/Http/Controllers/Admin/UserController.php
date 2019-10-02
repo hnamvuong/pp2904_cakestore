@@ -4,28 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductFormRequest;
-use App\Contracts\Interfaces\ProductInterface;
+use App\Models\User;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $productRepository;
-
-    public function __construct(ProductInterface $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
-
     public function index()
     {
-        $products = $this->productRepository->getAll();
-        
-        return view('admin.products.index', compact('products'));
+        $users = User::where('name', '!=', 'admin')->get();
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -35,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        //
     }
 
     /**
@@ -44,11 +36,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductFormRequest $request)
-    {   
-        $this->productRepository->createNew($request);
-
-        return redirect(route('products.create'))->with('status', 'A new product has been created!');
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -59,7 +49,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -70,9 +60,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->productRepository->findById($id);
-
-        return view('admin.products.edit', compact('product'));
+        //
     }
 
     /**
@@ -82,11 +70,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $product = $this->productRepository->updateExist($id);
-
-        return redirect(action('Admin\ProductController@edit', $product->id))->with('status', 'The product has been updated');
+        //
     }
 
     /**
@@ -97,8 +83,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->productRepository->deleteById($id);
-
-        return redirect(route('products.index'));
+        //
     }
 }

@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductFormRequest;
-use App\Contracts\Interfaces\ProductInterface;
+use App\Contracts\Interfaces\CategoryInterface;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $productRepository;
 
-    public function __construct(ProductInterface $productRepository)
+    private $categoryRepository;
+
+    public function __construct(CategoryInterface $categoryInterface)
     {
-        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryInterface;
     }
 
     public function index()
     {
-        $products = $this->productRepository->getAll();
-        
-        return view('admin.products.index', compact('products'));
+        $categories = $this->categoryRepository->getAll();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -44,11 +44,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductFormRequest $request)
-    {   
-        $this->productRepository->createNew($request);
+    public function store(Request $request)
+    {
+        $category = $this->categoryRepository->createNew($request);
 
-        return redirect(route('products.create'))->with('status', 'A new product has been created!');
+        return redirect(route('categories.create'))->with('status', 'Product Type '. $category->name .' has been added successfully');
     }
 
     /**
@@ -59,7 +59,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -70,9 +70,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->productRepository->findById($id);
+        $category = $this->categoryRepository->findById($id);
 
-        return view('admin.products.edit', compact('product'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -82,11 +82,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $product = $this->productRepository->updateExist($id);
+        $category = $this->categoryRepository->updateExist($request, $id);
 
-        return redirect(action('Admin\ProductController@edit', $product->id))->with('status', 'The product has been updated');
+        return redirect(action('Admin\CategoryController@edit', $category->id))->with('status', 'The category '. $category->name .' has been updated');
     }
 
     /**
@@ -97,8 +97,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->productRepository->deleteById($id);
+        $this->categoryRepository->deleteById($id);
 
-        return redirect(route('products.index'));
+        return redirect(route('categories.index'));
     }
 }

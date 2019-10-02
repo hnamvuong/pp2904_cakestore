@@ -1,4 +1,4 @@
-@extends('backend.admin.master')
+@extends('admin.layouts.master')
 @section('title', 'CakeStore')
 @section('content')
 

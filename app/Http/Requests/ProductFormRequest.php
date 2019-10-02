@@ -26,10 +26,9 @@ class ProductFormRequest extends FormRequest
         return [
             'name' => 'required',
             'id_type' => 'required|numeric',
-            'description' => 'required|string',
             'unit_price' => 'required|numeric',
             'promotion_price' => 'required|numeric',
-            'image' => 'required|url',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif',
             'unit' => 'required|max:7',
             'new' => 'required',
         ];

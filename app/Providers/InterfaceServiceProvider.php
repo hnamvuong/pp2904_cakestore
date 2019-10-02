@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class InterfaceServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+       
     }
 
     /**
@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+        $this->app->bind('App\Contracts\Interfaces\ProductInterface', 'App\Contracts\Repositories\ProductRepository');
+
+        $this->app->bind('App\Contracts\Interfaces\CategoryInterface', 'App\Contracts\Repositories\CategoryRepository');
     }
 }
