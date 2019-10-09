@@ -58,6 +58,16 @@ Route::group([
         'as' => 'usersearch',
         'uses' => 'UserController@getSearch'
     ]);
+
+    Route::get('/order/getNewOrder', [
+        'as' => 'getNewOrder',
+        'uses' => 'OrderController@getNewOrder'
+    ]);
+
+    Route::get('/order/getDeliveringOrder', [
+        'as' => 'getDeliveringOrder',
+        'uses' => 'OrderController@getDeliveringOrder'
+    ]);
 });
 
 Route::get('add-to-cart/{id}', [

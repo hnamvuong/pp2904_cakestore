@@ -87,11 +87,19 @@
                             </a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="/manager/publishingcompanies/create" class="m-menu__link ">
+                            <a href="{{ route('getNewOrder') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                 <span></span>
                                 </i>
-                                <span class="m-menu__link-text">Create</span>
+                                <span class="m-menu__link-text">Orders New</span>
+                            </a>
+                        </li>
+                        <li class="m-menu__item " aria-haspopup="true">
+                            <a href="{{ route('getDeliveringOrder') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                <span></span>
+                                </i>
+                                <span class="m-menu__link-text">Orders Delivering</span>
                             </a>
                         </li>
                     </ul>
@@ -191,7 +199,7 @@
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="" class="m-menu__link ">
+                            <a href="{{ route('users.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>

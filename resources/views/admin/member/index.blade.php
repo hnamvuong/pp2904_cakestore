@@ -15,14 +15,34 @@
 
         <!--begin::Section-->
         <div class="m-section">
-            <div id="m_table_1_filter" class="dataTables_filter">
-                <label>Search:
-                    <form method="post" action="{{ route('usersearch') }}">
-                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="m_table_1" name="search">
-                        <button class="fa fa-search" type="submit" id="searchsubmit" style="position: absolute; left: 194px; bottom: 25px; padding-top: 5px; padding-bottom: 7px; background-color: white;"></button>
-                    </form>
-                </label>
-            </div>  
+            
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="m_table_2_length">
+                        <label>
+                            Show 
+                            <select name="m_table_2_length" aria-controls="m_table_2" class="form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div id="m_table_1_filter" class="dataTables_filter">
+                        <label>Search:
+                            <form method="post" action="{{ route('usersearch') }}">
+                                @csrf
+                                <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="m_table_1" name="search">
+                                <button class="fa fa-search" type="submit" id="searchsubmit" style="position: absolute; left: 194px; bottom: 25px; padding-top: 5px; padding-bottom: 7px; background-color: white;"></button>
+                            </form>
+                        </label>
+                    </div>
+                </div>
+            </div> 
             <div class="m-section__content">
                 <table class="table table-sm m-table m-table--head-bg-brand">
                     <thead class="thead-inverse">

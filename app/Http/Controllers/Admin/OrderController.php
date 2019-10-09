@@ -56,7 +56,7 @@ class OrderController extends Controller
     {
         $order = Bill::with(['bill_detail.product', 'customer'])->find($id);
         $bill_details = $order->bill_detail;
-    
+
         return view('admin.orders.invoice', compact('order', 'bill_details'));
     }
 
@@ -80,7 +80,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Bill::find($id);
+        $order->status = $request->state;
+        $order->save();
+
+        return redirect(route('orders.index'));
     }
 
     /**
@@ -92,5 +96,19 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getNewOrder()
+    {
+        $orders = Bill::with('customer')->where('status', '=', 0)->get();
+
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function getDeliveringOrder()
+    {
+        $orders = Bill::with('customer')->where('status', '=', 2)->get();
+
+        return view('admin.orders.index', compact('orders'));
     }
 }
