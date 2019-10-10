@@ -1,178 +1,169 @@
-	@extends('master')
-@section('title', 'Chi tiết sản phẩm')
+@extends('master') 
+@section('title', 'Sản phẩm') 
 @section('content')
-<div class="inner-header">
-	<div class="container">
-		<div class="pull-left">
-			<h6 class="inner-title">Sản phẩm {{$sanpham->name}}</h6>
-		</div>
-		<div class="pull-right">
-			<div class="beta-breadcrumb font-large">
-				<a href="/">Home</a> / <span>Thông tin chi tiết sản phẩm</span>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+<div class="hero-wrap hero-bread" style="background-image: url('source/image/slide/banner2.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+                <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="container">
-	<div id="content">
-		<div class="row">
-			<div class="col-sm-9">
-				<div class="row">
-					<div class="col-sm-4">
-						<img src="source/image/product/{{$sanpham->image}}" alt="">
-					</div>
-					<div class="col-sm-8">
-						<div class="single-item-body">
-							<p class="single-item-title"><h2>{{$sanpham->name}}</h2></p>
-							<p class="single-item-price">
-								@if($sanpham->promotion_price == 0)
-                                    <span class="flash-sale">{{number_format($sanpham->unit_price)}} đ</span>
-                                @else
-                                    <span class="flash-del">{{number_format($sanpham->unit_price)}} đ</span>
-                                    <span class="flash-sale">{{number_format($sanpham->promotion_price)}} đ</span>
-                                @endif
-							</p>
-						</div>
-						<div class="clearfix"></div>
-						<div class="space20">&nbsp;</div>
-						<div class="single-item-desc">
-							<p>{{$sanpham->description}}</p>
-						</div>
-						<div class="space20">&nbsp;</div>
-						<p>Số lượng</p>
-						<div class="single-item-options">
-							<select class="wc-select" name="color">
-								<option>Số lượng</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-							<a class="add-to-cart" href="{{route('themgiohang', $sanpham->id)}}"><i class="fa fa-shopping-cart"></i></a>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-				<div class="space40">&nbsp;</div>
-				<div class="woocommerce-tabs">
-					<ul class="tabs">
-						<li><a href="#tab-description">Mô tả</a></li>
-					</ul>
-					<div class="panel" id="tab-description">
-						<p>{{$sanpham->description}}</p>
-					</div>
-				</div>
-				<div class="space50">&nbsp;</div>
-				<div class="beta-products-list">
-					<h4>Sản phẩm tương tự</h4>
-					<div class="row">
-						@foreach($sp_tuongtu as $sptt)
-						<div class="col-sm-4">
-							<div class="single-item">
-								@if($sptt->promotion_price != 0)
-	                                <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-	                            @endif
-								<div class="single-item-header">
-									<a href="{{route('productdetail', $sptt->id)}}"><img src="source/image/product/{{$sptt->image}}" alt="" height="150px"></a>
-								</div>
-								<div class="single-item-body">
-									<p class="single-item-title">{{$sptt->name}}</p>
-									<p class="single-item-price" style="font-size: 18px">
-									@if($sptt->promotion_price == 0)
-                                        <span class="flash-sale">{{number_format($sptt->unit_price)}} đ</span>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 ftco-animate">
+                <a href="images/product-1.jpg" class="image-popup"><img src="source/image/product/{{$sanpham->image}}" class="img-fluid" alt="Colorlib Template"></a>
+            </div>
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <h3>{{$sanpham->name}}</h3>
+                <div class="rating d-flex">
+                    <p class="text-left mr-4">
+                        <a href="#" class="mr-2">5.0</a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                    </p>
+                    <p class="text-left mr-4">
+                        <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
+                    </p>
+                    <p class="text-left">
+                        <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
+                    </p>
+                </div>
+                <p class="price">
+                    @if($sanpham->promotion_price == 0)
+                        <span class="mr-2 price-dc">{{number_format($sanpham->unit_price)}} đ</span>
+                    @else
+                        <span class="price-sale">{{number_format($sanpham->promotion_price)}} đ</span>
+                    @endif
+
+                </p>
+                <p>{{$sanpham->description}}
+                </p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                    <div class="input-group col-md-6 d-flex mb-3">
+                        <span class="input-group-btn mr-2">
+                        <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+                       <i class="ion-ios-remove"></i>
+                        </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                        <span class="input-group-btn ml-2">
+                        <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                         <i class="ion-ios-add"></i>
+                     </button>
+                    </span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <p style="color: #000;">600 kg available</p>
+                    </div>
+                </div>
+                <p><a href="{{route('themgiohang', $sanpham->id)}}" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Products</span>
+                <h2 class="mb-4">Related Products</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach($sp_tuongtu as $sptt)
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod"><img class="img-fluid" src="source/image/product/{{$sptt->image}}" alt="Colorlib Template">
+                        @if($sptt->promotion_price != 0)
+                        <div class="ribbon-wrapper">
+                            <div class="ribbon sale">Sale</div>
+                        </div>
+                        @endif
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="#">{{$sptt->name}}</a></h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price">
+                                    @if($sptt->promotion_price == 0)
+                                    <span class="mr-2 price-dc">{{number_format($sptt->unit_price)}} đ</span>
                                     @else
-                                        <span class="flash-del">{{number_format($sptt->unit_price)}} đ</span>
-                                        <span class="flash-sale">{{number_format($sptt->promotion_price)}} đ</span>
-                                    @endif
-									</p>
-								</div>
-								<div class="single-item-caption">
-									<a class="add-to-cart pull-left" href="{{route('themgiohang', $sptt->id)}}"><i class="fa fa-shopping-cart"></i></a>
-									<a class="beta-btn primary" href="{{route('productdetail', $sptt->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						@endforeach
-					</div>
-					<div class="row">{{$sp_tuongtu->links()}}</div>
-					</div> <!-- .beta-products-list -->
-				</div>
-				<div class="col-sm-3 aside">
-					<div class="widget">
-						<h3 class="widget-title">Best Sellers</h3>
-						<div class="widget-body">
-							<div class="beta-sales beta-lists">
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/2.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/3.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/4.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</div> <!-- best sellers widget -->
-						<div class="widget">
-							<h3 class="widget-title">New Products</h3>
-							<div class="widget-body">
-								<div class="beta-sales beta-lists">
-									<div class="media beta-sales-item">
-										<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
-										<div class="media-body">
-											Sample Woman Top
-											<span class="beta-sales-price">$34.55</span>
-										</div>
-									</div>
-									<div class="media beta-sales-item">
-										<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/2.png" alt=""></a>
-										<div class="media-body">
-											Sample Woman Top
-											<span class="beta-sales-price">$34.55</span>
-										</div>
-									</div>
-									<div class="media beta-sales-item">
-										<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/3.png" alt=""></a>
-										<div class="media-body">
-											Sample Woman Top
-											<span class="beta-sales-price">$34.55</span>
-										</div>
-									</div>
-									<div class="media beta-sales-item">
-										<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/4.png" alt=""></a>
-										<div class="media-body">
-											Sample Woman Top
-											<span class="beta-sales-price">$34.55</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div> <!-- best sellers widget -->
-					</div>
-			</div>
-		</div> <!-- #content -->
-	</div> <!-- .container -->
+                                    <span class="mr-2 price-dc">{{number_format($sptt->unit_price)}} đ</span>
+                                    <span class="price-sale">{{number_format($sptt->promotion_price)}} đ</span>
+                                    @endif</p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="{{route('productdetail', $sptt->id)}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="{{route('themgiohang', $sptt->id)}}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="row">{{$sp_tuongtu->links()}}</div> 
+    </div>
+</section>
+
+<script>
+    $(document).ready(function() {
+
+        var quantitiy = 0;
+        $('.quantity-right-plus').click(function(e) {
+
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+
+            // If is not undefined
+
+            $('#quantity').val(quantity + 1);
+
+            // Increment
+
+        });
+
+        $('.quantity-left-minus').click(function(e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+
+            // If is not undefined
+
+            // Increment
+            if (quantity > 0) {
+                $('#quantity').val(quantity - 1);
+            }
+        });
+
+    });
+</script>
+
 @endsection

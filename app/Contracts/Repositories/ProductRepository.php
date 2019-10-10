@@ -7,6 +7,11 @@ use App\Http\Requests\ProductFormRequest;
 
 class ProductRepository implements ProductInterface
 {
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     public function getAll()
     {
         return Product::with('product_type')->get();
@@ -62,7 +67,23 @@ class ProductRepository implements ProductInterface
         $product->delete();
     }
 
+	public function getNewProduct()
+	{
+		return $this->product->where('new', '1');
+	}
 
+	public function getSaleProduct()
+	{
+		return $this->product->where('promotion_price', '<>', 0);
+	}
 
+	public function getProductByType($type)
+	{
+		return $this->product->where('id_type', $type);
+	}
 
+	public function getProductOther($type)
+	{
+		return $this->product->where('id_type', '<>', $type);
+	}
 }
