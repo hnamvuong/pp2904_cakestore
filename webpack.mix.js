@@ -25,4 +25,7 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('resources/assets/app/media/img/users/user4.jpg', 'public/assets/app/media/img/users/user4.jpg')
     .copy('resources/css/croppie.css', 'public/css/croppie.css')
     .copyDirectory('resources/admin', 'public/admin');
+    .copyDirectory('resources/assets/vendors', 'public/assets/vendors')
+    .copyDirectory('resources/source/assets', 'public/source/assets')
+    .copyDirectory('resources/source/image', 'public/source/image');
     

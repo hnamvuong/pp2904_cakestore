@@ -1,18 +1,15 @@
 @extends('master')
 @section('title', 'Liên hệ')
 @section('content')
-<div class="inner-header">
-	<div class="container">
-		<div class="pull-left">
-			<h6 class="inner-title">Contacts</h6>
-		</div>
-		<div class="pull-right">
-			<div class="beta-breadcrumb font-large">
-				<a href="/">Home</a> / <span>Contacts</span>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+<div class="hero-wrap hero-bread" style="background-image: url('source/image/slide/banner2.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+                <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="beta-map">
 	

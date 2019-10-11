@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Slide;
 use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\Cart;
@@ -11,29 +10,45 @@ use App\Models\Bill;
 use App\Models\BillDetail;
 use Session;
 use Illuminate\Http\Request;
+use App\Contracts\Interfaces\SlideInterface;
+use App\Contracts\Interfaces\ProductInterface;
+use App\Contracts\Interfaces\ProductTypeInterface;
+use App\Contracts\Interfaces\ProductDetailInterface;
 
 class PageController extends Controller
 {
-    public function getIndex() {
-    	$slide = Slide::all();
-    	$new_product = Product::where('new','1')->paginate(4);
-    	$sale_product = Product::where('promotion_price', '<>', 0)->paginate(8);
+    protected $slideRepository;
 
-    	return view('welcome', compact('slide', 'new_product', 'sale_product'));
+    public function __construct(SlideInterface $slideRepository, ProductInterface $productRepository, ProductTypeInterface $producttypeRepository, ProductDetailInterface $productdetailRepository )
+    {
+        $this->slideRepository = $slideRepository;
+        $this->productRepository = $productRepository;
+        $this->producttypeRepository = $producttypeRepository;
+        $this->productdetailRepository = $productdetailRepository;
+    }
+
+    public function getIndex() {
+    	$slide = $this->slideRepository->getAll();
+        $new_product = $this->productRepository->getNewProduct()->paginate(4);
+        $count_new = $this->productRepository->getNewProduct()->count();
+        $sale_product = $this->productRepository->getSaleProduct()->paginate(8);
+        $count_sale = $this->productRepository->getSaleProduct()->count();
+        return view('welcome', compact('slide', 'new_product', 'sale_product', 'count_new', 'count_sale'));
     }
 
     public function getProductType($type) {
-        $sp_theoloai = Product::where('id_type', $type)->get();
-        $sp_khac = Product::where('id_type', '<>', $type)->paginate(3);
-        $loai = ProductType::all();
-        $loai_sp = ProductType::where('id', $type)->first();
+        $data = $type == 0 ? Product::all() : $this->productRepository->getProductByType($type)->get();
+        $sp_khac = $this->productRepository->getProductOther($type)->paginate(3);
+        $loai = $this->producttypeRepository->getAll();
+        $loai_sp = $this->producttypeRepository->getProductTypeName($type);
 
-    	return view('producttype.product_type', compact('sp_theoloai', 'sp_khac', 'loai', 'loai_sp'));
+
+        return view('producttype.product_type', compact('sp_khac', 'loai', 'loai_sp', 'data'));
     }
 
     public function getProductDetail(Request $request) {
-        $sanpham = Product::where('id', $request->id)->first();
-        $sp_tuongtu = Product::where('id_type', $sanpham->id_type)->paginate(6);
+        $sanpham = $this->productdetailRepository->getProductByID($request);
+        $sp_tuongtu = $this->productdetailRepository->getProductSimilar($sanpham->id_type)->paginate(6);
 
     	return view('productdetail.product_detail', compact('sanpham', 'sp_tuongtu'));
     }

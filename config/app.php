@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\InterfaceServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
+
     ],
 
     /*
