@@ -74,23 +74,44 @@
 
 <section class="ftco-section ftco-category ftco-no-pt">
     <div class="container">
-
-        <div class="row justify-content-center mb-3 pb-3">
-            <div class="col-md-12 heading-section text-center ftco-animate">
-                <h2 class="mb-4">Loại sản phẩm</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-            </div>
-        </div>
-
-        <div class="row justify-content-md-center col-sm-12">
-            @foreach($loai_sp as $loai)
-            <div class="col-md-auto" style="background-image: url(source/image/product/{{$loai->image}}); height: 250px; width: 250px">
-                <div class="text px-3 py-1">
-                    <h2 class="mb-0"><a href="{{route('producttype', $loai->id)}}">{{$loai->name}}</a></h2>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 order-md-last align-items-stretch d-flex">
+                        <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex fadeInUp ftco-animated" style="background-image: url(source/image/product/crepe-chuoi.jpg);">
+                            <div class="text text-center">
+                                <h2>CakeStore</h2>
+                                <p>Protect the health of every home</p>
+                                <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end fadeInUp ftco-animated" style="background-image: url(source/image/product/crepe-chocolate.jpg);">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href="#">Pizza</a></h2>
+                            </div>
+                        </div>
+                        <div class="category-wrap ftco-animate img d-flex align-items-end fadeInUp ftco-animated" style="background-image: url(source/image/product/crepe-traxanh.jpg);">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href="#">Cupcake</a></h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="space60">&nbsp;</div>
-            @endforeach
+            <div class="col-md-4">
+                <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end fadeInUp ftco-animated" style="background-image: url(source/image/product/Macaron9.jpg);">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href="#">Crepe Cake</a></h2>
+                    </div>
+                </div>
+                <div class="category-wrap ftco-animate img d-flex align-items-end fadeInUp ftco-animated" style="background-image: url(source/image/product/Peach-Cake_3294.jpg);">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href="#">Dried</a></h2>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -150,7 +171,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="row">{{$new_product->links()}}</div>
+                    <div class="row" id="newProduct">{{$new_product->links()}}</div>
 
                 </div>
 
@@ -214,7 +235,7 @@
     </div>
 </section>
 
-<section class="ftco-section img" style="background-image: url(source/image/product/tdy_food_10a_4th_190703_1920x1080.today-inline-vid-featured-desktop.jpg);">
+<section class="ftco-section img" style="background-image: url(source/image/product/234.jpg);">
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -322,4 +343,15 @@
     </div>
 </section>
 
-<hr> @endsection
+<hr> 
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {    
+        $("#newProduct").click(function() {
+            alert('go away');
+        })
+    })
+</script>
+@endsection

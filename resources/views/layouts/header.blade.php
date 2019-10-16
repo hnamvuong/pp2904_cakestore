@@ -30,21 +30,28 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Loại sản phẩm</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Type</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         @foreach($loai_sp as $loai)
                         <a class="dropdown-item" href="{{route('producttype', $loai->id)}}">{{$loai->name}}</a>
                         @endforeach
                     </div>
                 </li>
-                <li class="nav-item"><a href="/about" class="nav-link">Giới thiệu</a></li>
-                <li class="nav-item"><a href="/contact" class="nav-link">Liên hệ</a></li>
-                <li class="nav-item"><a href="/login" class="nav-link">Đăng nhập</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
             </ul>
             <div class="nav-item cta cta-colored">
-                @if(Session::has('cart'))
-                <div class="cart">
-                    <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@if(Session::has('cart')){{Session('cart')->totalQty}} @else Trống @endif) <i class="fa fa-chevron-down"></i></div>
+                @if (Session::has('cart'))
+                <div class="cart" style="border-style: none;">
+                    <div class="beta-select"><i class="fa fa-shopping-cart"></i> 
+                        Giỏ hàng  
+                        (@if (Session::has('cart'))
+                        {{Session('cart')->totalQty}} 
+                        @else Trống 
+                        @endif) 
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
                     <div class="beta-dropdown cart-body">
                         @foreach($product_cart as $product)
                         <div class="cart-item">
@@ -60,7 +67,7 @@
                         @endforeach
 
                         <div class="cart-caption">
-                            <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}} đ</span></div>
+                            Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}} đ</span>
                             <div class="clearfix"></div>
 
                             <div class="center">
@@ -68,6 +75,13 @@
                                 <a href="{{route('dathang')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
                             </div>
                         </div>
+                    </div>
+                </div>
+                @else 
+                <div class="cart" style="border-style: none;">
+                    <div class="beta-select">
+                        <i class="fa fa-shopping-cart"></i> 
+                        <i class="fa fa-chevron-down"></i>
                     </div>
                 </div>
                 <!-- .cart -->

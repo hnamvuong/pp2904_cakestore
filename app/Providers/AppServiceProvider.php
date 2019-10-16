@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\ProductType;
+use Session;
+use App\Models\Cart;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,9 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         view()->composer(['layouts.header', 'welcome'], function($view) {
-            $loai_sp = ProductType::all();
+            $loai_sp = ProductType::paginate(4);
             
             $view->with('loai_sp', $loai_sp);
         });
