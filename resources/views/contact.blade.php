@@ -5,69 +5,64 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
-                <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact us</span></p>
+                <h1 class="mb-0 bread">Contact us</h1>
             </div>
         </div>
     </div>
 </div>
-<div class="beta-map">
-	
-	<div class="abs-fullwidth beta-map wow flipInX"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59590.40794172762!2d105.74687761674058!3d21.016655317134298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab0d69594b35%3A0x56c7da1281efdc2f!2zSGFuZGljbyBUb3dlciAtIERITO2KueyGoSDsiJjroLnsp4A!5e0!3m2!1svi!2s!4v1566644022582!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div>
-</div>
-<div class="container">
-	<div id="content" class="space-top-none">
-		
-		<div class="space50">&nbsp;</div>
-		<div class="row">
-			<div class="col-sm-8">
-				<h2>Contact Form</h2>
-				<div class="space20">&nbsp;</div>
-				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit ani m id est laborum.</p>
-				<div class="space20">&nbsp;</div>
-				<form action="#" method="post" class="contact-form">
-					<div class="form-block">
-						<input name="your-name" type="text" placeholder="Your Name (required)">
-					</div>
-					<div class="form-block">
-						<input name="your-email" type="email" placeholder="Your Email (required)">
-					</div>
-					<div class="form-block">
-						<input name="your-subject" type="text" placeholder="Subject">
-					</div>
-					<div class="form-block">
-						<textarea name="your-message" placeholder="Your Message"></textarea>
-					</div>
-					<div class="form-block">
-						<button type="submit" class="beta-btn primary">Send Message <i class="fa fa-chevron-right"></i></button>
-					</div>
-				</form>
-			</div>
-			<div class="col-sm-4">
-				<h2>Contact Information</h2>
-				<div class="space20">&nbsp;</div>
-				<h6 class="contact-title">Address</h6>
-				<p>
-					Suite 127 / 267 – 277 Brussel St,<br>
-					62 Croydon, NYC <br>
-					Newyork
-				</p>
-				<div class="space20">&nbsp;</div>
-				<h6 class="contact-title">Business Enquiries</h6>
-				<p>
-					Doloremque laudantium, totam rem aperiam, <br>
-					inventore veritatio beatae. <br>
-					<a href="mailto:biz@betadesign.com">biz@betadesign.com</a>
-				</p>
-				<div class="space20">&nbsp;</div>
-				<h6 class="contact-title">Employment</h6>
-				<p>
-					We’re always looking for talented persons to <br>
-					join our team. <br>
-					<a href="hr@betadesign.com">hr@betadesign.com</a>
-				</p>
-			</div>
-		</div>
-		</div> <!-- #content -->
-		</div> <!-- .container -->
+
+<section class="ftco-section contact-section bg-light">
+    <div class="container">
+        <div class="row d-flex mb-5 contact-info">
+            <div class="w-100"></div>
+            <div class="col-md-3 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="info bg-white p-4">
+                    <p><span>Website</span> <a href="#">yoursite.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row block-9">
+            <div class="col-md-6 order-md-last d-flex">
+                <form action="#" class="bg-white p-5 contact-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" style="width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Email" style="width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject" style="width: 100%;">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5" style="width: 100%;">
+                    </div>
+                </form>
+                
+            </div>
+
+            <div class="col-md-6 d-flex">
+                <div id="map" class="bg-white"></div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection

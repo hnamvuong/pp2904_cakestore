@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>@yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,55 +38,58 @@
     <link rel="stylesheet" href="{{asset('theme/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{asset('theme/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{asset('theme/css/style.css') }}">
-  </head>
-  <body class="goto-here">
+</head>
+<body class="goto-here">
+    
     @include('layouts.header')
     @yield('content')
     @include('layouts.footer')
+
+<script src="{{asset('theme/js/jquery.min.js') }}"></script>
+<script src="{{asset('theme/js/jquery-migrate-3.0.1.min.js') }}"></script>
+<script src="{{asset('theme/js/popper.min.js') }}"></script>
+<script src="{{asset('theme/js/bootstrap.min.js') }}"></script>
+<script src="{{asset('theme/js/jquery.easing.1.3.js') }}"></script>
+<script src="{{asset('theme/js/jquery.waypoints.min.js') }}"></script>
+<script src="{{asset('theme/js/jquery.stellar.min.js') }}"></script>
+<script src="{{asset('theme/js/owl.carousel.min.js') }}"></script>
+<script src="{{asset('theme/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{asset('theme/js/aos.js') }}"></script>
+<script src="{{asset('theme/js/jquery.animateNumber.min.js') }}"></script>
+<script src="{{asset('theme/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{asset('theme/js/scrollax.min.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="{{asset('theme/js/google-map.js') }}"></script>
+<script src="{{asset('theme/js/main.js') }}"></script>
+<script src="{{ asset('source/assets/dest/js/jquery.js') }}"></script>
+<script src="{{ asset('source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js') }}"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('source/assets/dest/vendors/bxslider/jquery.bxslider.min.js') }}"></script>
+<script src="{{ asset('source/assets/dest/vendors/colorbox/jquery.colorbox-min.js') }}"></script>
+<script src="{{ asset('source/assets/dest/vendors/animo/Animo.js') }}"></script>
+<script src="{{ asset('source/assets/dest/vendors/dug/dug.js') }}"></script>
+<script src="{{ asset('source/assets/dest/js/scripts.min.js') }}"></script>
+<script src="{{ asset('source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
+<script src="{{ asset('source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
+<script src="{{ asset('source/assets/dest/js/waypoints.min.js') }}"></script>
+<script src="{{ asset('source/assets/dest/js/wow.min.js') }}"></script>
+<!--customjs-->
+<script src="{{ asset('source/assets/dest/js/custom2.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function($) {    
+        $(window).scroll(function(){
+          if($(this).scrollTop()>150){
+              $(".header-bottom").addClass('fixNav')
+          }else{
+            $(".header-bottom").removeClass('fixNav')
+        }}
+        )
+    })
+</script>
+
+@yield('script')
+
 </body>
-
-
-  <script src="{{asset('theme/js/jquery.min.js') }}"></script>
-  <script src="{{asset('theme/js/jquery-migrate-3.0.1.min.js') }}"></script>
-  <script src="{{asset('theme/js/popper.min.js') }}"></script>
-  <script src="{{asset('theme/js/bootstrap.min.js') }}"></script>
-  <script src="{{asset('theme/js/jquery.easing.1.3.js') }}"></script>
-  <script src="{{asset('theme/js/jquery.waypoints.min.js') }}"></script>
-  <script src="{{asset('theme/js/jquery.stellar.min.js') }}"></script>
-  <script src="{{asset('theme/js/owl.carousel.min.js') }}"></script>
-  <script src="{{asset('theme/js/jquery.magnific-popup.min.js') }}"></script>
-  <script src="{{asset('theme/js/aos.js') }}"></script>
-  <script src="{{asset('theme/js/jquery.animateNumber.min.js') }}"></script>
-  <script src="{{asset('theme/js/bootstrap-datepicker.js') }}"></script>
-  <script src="{{asset('theme/js/scrollax.min.js') }}"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="{{asset('theme/js/google-map.js') }}"></script>
-  <script src="{{asset('theme/js/main.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/js/jquery.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js') }}"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-  <script src="{{ asset('source/assets/dest/vendors/bxslider/jquery.bxslider.min.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/vendors/colorbox/jquery.colorbox-min.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/vendors/animo/Animo.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/vendors/dug/dug.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/js/scripts.min.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/js/waypoints.min.js') }}"></script>
-  <script src="{{ asset('source/assets/dest/js/wow.min.js') }}"></script>
-  <!--customjs-->
-  <script src="{{ asset('source/assets/dest/js/custom2.js') }}"></script>
-  <script>
-  $(document).ready(function($) {    
-    $(window).scroll(function(){
-      if($(this).scrollTop()>150){
-      $(".header-bottom").addClass('fixNav')
-      }else{
-        $(".header-bottom").removeClass('fixNav')
-      }}
-    )
-  })
-  </script>
-    
-  </body>
 </html>
