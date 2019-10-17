@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="{{ route('user_feedbacks.index') }}" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
             </ul>
             <div class="nav-item cta cta-colored">

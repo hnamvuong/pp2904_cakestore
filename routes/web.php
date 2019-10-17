@@ -46,6 +46,10 @@ Route::get('/contact',[
     'uses' => 'PageController@getContact'
 ]);
 
+Route::resources([
+    'user_feedbacks' => 'FeedbackController',
+]);
+
 Route::get('/about',[
     'as' => 'about',
     'uses' => 'PageController@getAbout'
@@ -63,6 +67,7 @@ Route::group([
         'categories' => 'CategoryController',
         'orders' => 'OrderController',
         'users' => 'UserController',
+        'admin_feedbacks' => 'FeedbackController'
     ]);
 
     Route::post('/usersearch', [

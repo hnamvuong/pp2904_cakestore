@@ -14,6 +14,11 @@
 
 <section class="ftco-section contact-section bg-light">
     <div class="container">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            <strong>Well done!</strong> {{ session('status') }}
+        </div>
+        @endif
         <div class="row d-flex mb-5 contact-info">
             <div class="w-100"></div>
             <div class="col-md-3 d-flex">
@@ -39,18 +44,19 @@
         </div>
         <div class="row block-9">
             <div class="col-md-6 order-md-last d-flex">
-                <form action="#" class="bg-white p-5 contact-form">
+                <form action="{{ route('user_feedbacks.store') }}" class="bg-white p-5 contact-form" method="post">
+                    @csrf
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name" style="width: 100%;">
+                        <input type="text" class="form-control" placeholder="Your Name" name="name" style="width: 100%;">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email" style="width: 100%;">
+                        <input type="text" class="form-control" placeholder="Your Email" name="email" style="width: 100%;">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject" style="width: 100%;">
+                        <input type="text" class="form-control" placeholder="Subject" name="subject" style="width: 100%;">
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message" style="width: 100%;"></textarea>
+                        <textarea cols="30" rows="7" class="form-control" name="message" placeholder="Message" style="width: 100%;"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5" style="width: 100%;">
