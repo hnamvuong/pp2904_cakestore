@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer(['layouts.header'], function($view) {
             $loai_sp = ProductType::all();
-            
+
             $view->with('loai_sp', $loai_sp);
         });
 

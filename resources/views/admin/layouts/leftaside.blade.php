@@ -151,11 +151,11 @@
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="/manager/contacts" class="m-menu__link ">
+                            <a href="{{ route('admin_feedbacks.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">Pending</span>
+                                <span class="m-menu__link-text">All</span>
                             </a>
                         </li>
                     </ul>
