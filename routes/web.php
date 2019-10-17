@@ -20,6 +20,17 @@ Route::get('/', [
     'uses' => 'PageController@getIndex'
 ]);
 
+Route::get('/fetch_data', [
+    'as' => 'pagination_newproduct',
+    'uses' => 'PaginationController@fetch_data'
+]);
+
+Route::get('/fetch_data_sale_product', [
+    'as' => 'pagination_saleproduct',
+    'uses' => 'PaginationController@fetch_data_sale_product'
+]);
+
+
 Route::get('product-type/{type}',[
     'as' => 'producttype',
     'uses' => 'PageController@getProductType'
