@@ -127,112 +127,27 @@
                         <p class="pull-left">Có {{$count_new}} sản phẩm mới</p>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="row">
-                        @foreach($new_product as $new)
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="{{route('productdetail', $new->id)}}" class="img-prod"><img class="img-fluid" src="source/image/product/{{$new->image}}" alt="Colorlib Template">
-                                    @if($new->promotion_price != 0)
-                                    <div class="ribbon-wrapper">
-                                        <div class="ribbon sale">Sale</div>
-                                    </div>
-                                    @endif
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">{{$new->name}}</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price">
-                                                @if($new->promotion_price == 0)
-                                                <span class="mr-2 price-dc">{{number_format($new->unit_price)}} đ</span>
-                                                @else
-                                                <span class="mr-2 price-dc">{{number_format($new->unit_price)}} đ</span>
-                                                <span class="price-sale">{{number_format($new->promotion_price)}} đ</span>
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="{{route('productdetail', $new->id)}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="{{route('themgiohang', $new->id)}}" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
+                    <div class="row" id="table_data_new_product">
+                        @include('layouts.pagination_new_product')
                     </div>
-                    <div class="row" id="newProduct">{{$new_product->links()}}</div>
-
                 </div>
 
                 <div class="space50">&nbsp;</div>
-                    <div class="beta-products-list">
-                        <h4>Sản phẩm khuyến mãi</h4>
-                        <div class="beta-products-details">
-                            <p class="pull-left">Có {{$count_sale}} sản phẩm đang sale</p>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="row">
-                        @foreach($sale_product as $sale)
-                        <div class="col-md-6 col-lg-3 ftco-animate">
-                            <div class="product">
-                                <a href="{{route('productdetail', $sale->id)}}" class="img-prod"><img class="img-fluid" src="source/image/product/{{$sale->image}}" alt="Colorlib Template">
-                                    @if($sale->promotion_price != 0)
-                                    <div class="ribbon-wrapper">
-                                        <div class="ribbon sale">Sale</div>
-                                    </div>
-                                    @endif
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3 text-center">
-                                    <h3><a href="#">{{$sale->name}}</a></h3>
-                                    <div class="d-flex">
-                                        <div class="pricing">
-                                            <p class="price">
-                                                @if($sale->promotion_price == 0)
-                                                <span class="mr-2 price-dc">{{number_format($sale->unit_price)}} đ</span>
-                                                @else
-                                                <span class="mr-2 price-dc">{{number_format($sale->unit_price)}} đ</span>
-                                                <span class="price-sale">{{number_format($sale->promotion_price)}} đ</span>
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-area d-flex px-3">
-                                        <div class="m-auto d-flex">
-                                            <a href="{{route('productdetail', $sale->id)}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                <span><i class="ion-ios-menu"></i></span>
-                                            </a>
-                                            <a href="{{route('themgiohang', $sale->id)}}" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                <span><i class="ion-ios-cart"></i></span>
-                                            </a>
-                                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                                <span><i class="ion-ios-heart"></i></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        </div>
-                        <div class="row">{{$sale_product->links()}}</div>
-                        </div> <!-- .beta-products-list -->
+                <div class="beta-products-list">
+                    <h4>Sản phẩm khuyến mãi</h4>
+                    <div class="beta-products-details">
+                        <p class="pull-left">Có {{$count_sale}} sản phẩm đang sale</p>
+                        <div class="clearfix"></div>
                     </div>
-
+                    <div class="row" id="data_sale_product">
+                        @include('layouts.pagination_sale_product')
+                    </div>
+                </div> <!-- .beta-products-list -->
             </div>
+
         </div>
     </div>
+</div>
 </section>
 
 <section class="ftco-section img" style="background-image: url(source/image/product/234.jpg);">
@@ -349,9 +264,39 @@
 @section('script')
 <script>
     $(document).ready(function() {    
-        $("#newProduct").click(function() {
-            alert('go away');
-        })
+        $(document).on('click', '#newProductPagination > .pagination a', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            fetch_data(page);
+        });
+
+        function fetch_data(page) 
+        {
+            $.ajax({
+                url:"/fetch_data?page=" + page,
+                success:function(data) 
+                {
+                    $('#table_data_new_product').html(data);
+                },
+            })
+        }
+
+        $(document).on('click', '#saleProductPagination > .pagination a', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            fetch_data_sale_product(page);
+        });
+
+        function fetch_data_sale_product(page) 
+        {
+            $.ajax({
+                url:"/fetch_data_sale_product?page=" + page,
+                success:function(data) 
+                {
+                    $('#data_sale_product').html(data);
+                },
+            })
+        }
     })
 </script>
 @endsection

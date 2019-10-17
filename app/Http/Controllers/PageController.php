@@ -33,6 +33,7 @@ class PageController extends Controller
         $count_new = $this->productRepository->getNewProduct()->count();
         $sale_product = $this->productRepository->getSaleProduct()->paginate(8);
         $count_sale = $this->productRepository->getSaleProduct()->count();
+        
         return view('welcome', compact('slide', 'new_product', 'sale_product', 'count_new', 'count_sale'));
     }
 

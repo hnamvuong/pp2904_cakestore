@@ -44,7 +44,9 @@
     @include('layouts.header')
     @yield('content')
     @include('layouts.footer')
-
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="{{asset('theme/js/jquery.min.js') }}"></script>
 <script src="{{asset('theme/js/jquery-migrate-3.0.1.min.js') }}"></script>
 <script src="{{asset('theme/js/popper.min.js') }}"></script>
@@ -75,8 +77,7 @@
 <script src="{{ asset('source/assets/dest/js/wow.min.js') }}"></script>
 <!--customjs-->
 <script src="{{ asset('source/assets/dest/js/custom2.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <script>
     $(document).ready(function($) {    
         $(window).scroll(function(){
