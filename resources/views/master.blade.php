@@ -7,6 +7,7 @@
     <base href="{{asset('')}}">
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('admin/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('source/assets/dest/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('source/assets/dest/vendors/colorbox/example3/colorbox.css') }}">
@@ -88,6 +89,16 @@
         }}
         )
     })
+</script>
+
+<script type="text/javascript">
+    function loginForm() {
+        document.getElementById('getLogin').click();
+    }
+
+    function registerForm() {
+        document.getElementById('getRegister').click();
+    }
 </script>
 
 @yield('script')
