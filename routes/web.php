@@ -106,6 +106,17 @@ Route::post('dat-hang', [
     'uses' => 'PageController@postCheckout'
 ]);
 
+Route::get('lich-su', [
+    'as' => 'lichsu',
+    'uses' => 'PageController@getHistory'
+]);
+
+Route::get('bill-detail/{id_bill}', [
+    'as' => 'billdetail',
+    'uses' => 'PageController@getCheckoutDetail'
+]);
+
+
 Route::get('search', [
     'as' => 'search',
     'uses' => 'PageController@getSearch'
