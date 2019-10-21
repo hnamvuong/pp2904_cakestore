@@ -39,54 +39,239 @@
                 </li>
                 <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="{{ route('user_feedbacks.index') }}" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-            </ul>
-            <div class="nav-item cta cta-colored">
-                @if (Session::has('cart'))
-                <div class="cart" style="border-style: none;">
-                    <div class="beta-select"><i class="fa fa-shopping-cart"></i> 
-                        Giỏ hàng  
-                        (@if (Session::has('cart'))
-                        {{Session('cart')->totalQty}} 
-                        @else Trống 
-                        @endif) 
-                        <i class="fa fa-chevron-down"></i>
-                    </div>
-                    <div class="beta-dropdown cart-body">
-                        @foreach($product_cart as $product)
-                        <div class="cart-item">
-                            <a class="cart-item-delete" href="{{route('xoagiohang', $product['item']['id'])}}"><i class="fa fa-times"></i></a>
-                            <div class="media">
-                                <a class="pull-left" href="#"><img src="source/image/product/{{$product['item']['image']}}" alt=""></a>
-                                <div class="media-body">
-                                    <span class="cart-item-title">{{$product['item']['name']}}</span>
-                                    <span class="cart-item-amount">{{$product['qty']}}*<span>@if($product['item']['promotion_price'] == 0){{number_format($product['item']['unit_price'])}} @else {{number_format($product['item']['promotion_price'])}}@endif</span></span>
-                                </div>
+                @if (Auth::check())
+                <li class="nav-item dropdown">
+                    <a href="/login" class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="m-menu__link-icon flaticon-avatar"></i>
+                        Chao [ {{ Auth::user()->name }} ]
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="#"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout').submit();">
+                        <i class="m-menu__link-icon flaticon flaticon-logout"></i> Logout
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="m-menu__link-icon flaticon-list-3"></i> Track My Bill
+                    </a>
+
+                    @if (Auth::user()->name == 'Admin')
+                    <a class="dropdown-item" href="{{ route('admin') }}">
+                        <i class="m-menu__link-icon flaticon-list-3"></i> Manage
+                    </a>
+                    @endif
+                </div>
+            </li>
+            @else
+            <li class="nav-item"><a href="#" data-toggle="modal" data-target="#modalLRForm"class="nav-link">Login</a></li>
+            @endif
+        </ul>
+        <div class="nav-item cta cta-colored">
+            @if (Session::has('cart'))
+            <div class="cart" style="border-style: none;">
+                <div class="beta-select"><i class="fa fa-shopping-cart"></i> 
+                    Giỏ hàng  
+                    (@if (Session::has('cart'))
+                    {{Session('cart')->totalQty}} 
+                    @else Trống 
+                    @endif) 
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <div class="beta-dropdown cart-body">
+                    @foreach($product_cart as $product)
+                    <div class="cart-item">
+                        <a class="cart-item-delete" href="{{route('xoagiohang', $product['item']['id'])}}"><i class="fa fa-times"></i></a>
+                        <div class="media">
+                            <a class="pull-left" href="#"><img src="source/image/product/{{$product['item']['image']}}" alt=""></a>
+                            <div class="media-body">
+                                <span class="cart-item-title">{{$product['item']['name']}}</span>
+                                <span class="cart-item-amount">{{$product['qty']}}*<span>@if($product['item']['promotion_price'] == 0){{number_format($product['item']['unit_price'])}} @else {{number_format($product['item']['promotion_price'])}}@endif</span></span>
                             </div>
                         </div>
-                        @endforeach
+                    </div>
+                    @endforeach
 
-                        <div class="cart-caption">
-                            Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}} đ</span>
-                            <div class="clearfix"></div>
+                    <div class="cart-caption">
+                        Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}} đ</span>
+                        <div class="clearfix"></div>
 
-                            <div class="center">
-                                <div class="space10">&nbsp;</div>
-                                <a href="{{route('dathang')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
-                            </div>
+                        <div class="center">
+                            <div class="space10">&nbsp;</div>
+                            <a href="{{route('dathang')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
-                @else 
-                <div class="cart" style="border-style: none;">
-                    <div class="beta-select">
-                        <i class="fa fa-shopping-cart"></i> 
-                        <i class="fa fa-chevron-down"></i>
-                    </div>
-                </div>
-                <!-- .cart -->
-                @endif
             </div>
+            @else 
+            <div class="cart" style="border-style: none;">
+                <div class="beta-select">
+                    <i class="fa fa-shopping-cart"></i> 
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+            </div>
+            <!-- .cart -->
+            @endif
         </div>
     </div>
+</div>
 </nav>
+<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Modal cascading tabs-->
+            <div class="modal-c-tabs">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab" id="getLogin"><i class="sign-in-alt"></i>
+                        Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel8" role="tab" id="getRegister"><i class="registered"></i>
+                        Register</a>
+                    </li>
+                </ul>
+                <!-- Tab panels -->
+                <div class="tab-content">
+                    <!--Panel 7-->
+                    <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+                        <!--Body-->
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="modal-body mb-1">
+                                <div class="md-form form-sm mb-5">
+                                    <i class="user-alt"></i>
+                                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="md-form form-sm mb-4">
+                                    <i class="key"></i>
+                                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate @error('password') is-invalid @enderror"name="password" required autocomplete="current-password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="md-form form-sm mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} style="display: block;">
+
+                                        <label class="form-check-label" for="remember">
+                                            {{ __('Remember Me') }}
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="text-center mt-2">
+                                    <button class="btn btn-info">Log in</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                            <div class="options text-center text-md-right mt-1">
+                                <p> Not a member? <i onclick="registerForm()" style="cursor: pointer; color: #82ae46; text-decoration: underline;">Sign Up</i></p>
+                                <p>
+                                    @if (Route::has('password.request'))
+                                    <a class="blue-text" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                    @endif
+                                </p>
+                            </div>
+                            
+                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!--/.Panel 7-->
+                    <!--Panel 8-->
+                    <div class="tab-pane fade" id="panel8" role="tabpanel">
+                        <!--Body-->
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="modal-body">
+                                <div class="md-form form-sm mb-5">
+                                    <i class="user-alt"></i>
+                                    <label data-error="wrong" data-success="right" for="name">Your Name</label>
+                                    
+                                    <input type="text" id="name" class="form-control form-control-sm validate @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> 
+
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="md-form form-sm mb-5">
+                                    <i class="user-alt"></i>
+                                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+
+                                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus> 
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="md-form form-sm mb-5">
+                                    <i class="key"></i>
+                                    <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+
+                                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="md-form form-sm mb-4">
+                                    <i class="key"></i>
+                                    <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+
+                                    <input name="password_confirmation" type="password" id="modalLRInput14" class="form-control form-control-sm validate @error('password') is-invalid @enderror"required autocomplete="new-password">
+                                </div>
+
+                                <div class="text-center form-sm mt-2">
+                                    <button class="btn btn-info" type="submit">Sign up</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Footer-->
+                        <div class="modal-footer">
+
+                            <div class="options text-right">
+                                <p class="pt-1">Already have an account? <i onclick="loginForm()" style="cursor: pointer; color: #82ae46; text-decoration: underline;">Log In</i></p>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!--/.Panel 8-->
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Login / Register Form-->
+<form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
