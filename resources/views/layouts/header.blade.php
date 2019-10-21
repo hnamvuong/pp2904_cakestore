@@ -52,7 +52,7 @@
                         <i class="m-menu__link-icon flaticon flaticon-logout"></i> Logout
                     </a>
 
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/lich-su">
                         <i class="m-menu__link-icon flaticon-list-3"></i> Track My Bill
                     </a>
 
