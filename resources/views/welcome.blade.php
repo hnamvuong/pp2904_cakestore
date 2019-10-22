@@ -297,6 +297,36 @@
                 },
             })
         }
+
+        $(document).on('click', '#newProduct, #saleProduct, #delete_cart', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href');
+            make_request(page);
+            count_cart();
+        });
+
+        function make_request(page) 
+        {
+            $.ajax({
+                url:page,
+                success:function(data) 
+                {
+                    $('#ajax_cart').html(data);
+
+                },
+            })
+        } 
+
+        function count_cart() 
+        {
+            $.ajax({
+                url:"/count_cart",
+                success:function(data) 
+                {
+                    $('#count_cart').html(data);
+                },
+            })
+        }  
     })
 </script>
 @endsection

@@ -67,51 +67,15 @@
             <li class="nav-item"><a href="#" data-toggle="modal" data-target="#modalLRForm"class="nav-link">Login</a></li>
             @endif
         </ul>
-        <div class="nav-item cta cta-colored">
-            @if (Session::has('cart'))
+        <div class="nav-item cta cta-colored" >
             <div class="cart" style="border-style: none;">
-                <div class="beta-select"><i class="fa fa-shopping-cart"></i> 
-                    Giỏ hàng  
-                    (@if (Session::has('cart'))
-                    {{Session('cart')->totalQty}} 
-                    @else Trống 
-                    @endif) 
-                    <i class="fa fa-chevron-down"></i>
+                <div class="beta-select" id="count_cart">
+                    @include('checkout.count_cart')
                 </div>
-                <div class="beta-dropdown cart-body">
-                    @foreach($product_cart as $product)
-                    <div class="cart-item">
-                        <a class="cart-item-delete" href="{{route('xoagiohang', $product['item']['id'])}}"><i class="fa fa-times"></i></a>
-                        <div class="media">
-                            <a class="pull-left" href="#"><img src="source/image/product/{{$product['item']['image']}}" alt=""></a>
-                            <div class="media-body">
-                                <span class="cart-item-title">{{$product['item']['name']}}</span>
-                                <span class="cart-item-amount">{{$product['qty']}}*<span>@if($product['item']['promotion_price'] == 0){{number_format($product['item']['unit_price'])}} @else {{number_format($product['item']['promotion_price'])}}@endif</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-                    <div class="cart-caption">
-                        Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}} đ</span>
-                        <div class="clearfix"></div>
-
-                        <div class="center">
-                            <div class="space10">&nbsp;</div>
-                            <a href="{{route('dathang')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
-                        </div>
-                    </div>
+                <div class="beta-dropdown cart-body" id="ajax_cart">
+                    @include('checkout.cart')
                 </div>
             </div>
-            @else 
-            <div class="cart" style="border-style: none;">
-                <div class="beta-select">
-                    <i class="fa fa-shopping-cart"></i> 
-                    <i class="fa fa-chevron-down"></i>
-                </div>
-            </div>
-            <!-- .cart -->
-            @endif
         </div>
     </div>
 </div>
