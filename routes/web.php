@@ -30,6 +30,11 @@ Route::get('/fetch_data_sale_product', [
     'uses' => 'PaginationController@fetch_data_sale_product'
 ]);
 
+Route::get('/count_cart', [
+    'as' => 'count_cart',
+    'uses' => 'AjaxCartController@countCart'
+]);
+
 
 Route::get('product-type/{type}',[
     'as' => 'producttype',

@@ -28,7 +28,7 @@ class PageController extends Controller
     }
 
     public function getIndex() {
-    	$slide = $this->slideRepository->getAll();
+        $slide = $this->slideRepository->getAll();
         $new_product = $this->productRepository->getNewProduct()->paginate(4);
         $count_new = $this->productRepository->getNewProduct()->count();
         $sale_product = $this->productRepository->getSaleProduct()->paginate(8);
@@ -51,39 +51,49 @@ class PageController extends Controller
         $sanpham = $this->productdetailRepository->getProductByID($request);
         $sp_tuongtu = $this->productdetailRepository->getProductSimilar($sanpham->id_type)->paginate(6);
 
-    	return view('productdetail.product_detail', compact('sanpham', 'sp_tuongtu'));
+        return view('productdetail.product_detail', compact('sanpham', 'sp_tuongtu'));
     }
 
     public function getContact() {
-    	return view('contact');
+        return view('contact');
     }
 
     public function getAbout() {
-    	return view('about');
+        return view('about');
     }
 
     public function getAddtoCart(Request $request, $id) {
-        $product = Product::find($id);
-        $oldCart = Session('cart')?Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $id);
-        $request->session()->put('cart', $cart);
+        if($request->ajax()) 
+        {
+            $product = Product::find($id);
+            $oldCart = Session('cart')?Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+            $cart->add($product, $id);
+            $request->session()->put('cart', $cart);
 
-        return redirect()->back();
+            return view('checkout.cart')->with([ 
+                'product_cart' => $cart->items
+            ])->render();
+        }
     }
 
-    public function getDelItemCart($id) {
-        $oldCart = Session::has('cart')?Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->removeItem($id);
-        if(count($cart->items)>0) {
-            Session::put('cart', $cart);
-        }
-        else {
-            Session::forget('cart');
-        }
+    public function getDelItemCart(Request $request,$id) {
+        if($request->ajax())
+        {
+            $oldCart = Session::has('cart')?Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+            $cart->removeItem($id);
+            if(count($cart->items)>0) {
+                Session::put('cart', $cart);
+            }
+            else {
+                Session::forget('cart');
+            }
 
-        return redirect()->back();
+            return view('checkout.cart')->with([ 
+                'product_cart' => $cart->items
+            ])->render();
+        }
     }
 
     public function getCheckout() {

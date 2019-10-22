@@ -28,7 +28,7 @@
                     <a href="{{route('productdetail', $sale->id)}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                         <span><i class="ion-ios-menu"></i></span>
                     </a>
-                    <a href="{{route('themgiohang', $sale->id)}}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                    <a href="{{route('themgiohang', $sale->id)}}" class="buy-now d-flex justify-content-center align-items-center mx-1" id="saleProduct">
                         <span><i class="ion-ios-cart"></i></span>
                     </a>
                     <a href="#" class="heart d-flex justify-content-center align-items-center ">
