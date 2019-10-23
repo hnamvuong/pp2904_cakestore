@@ -26,18 +26,18 @@
                             <th scope="col">Trạng thái</th></tr>
                         </thead>
                         <tbody>
-                            @foreach($history as $histories)
+                            @foreach($bills_history as $bill_history)
                             <tr>
-                                <td>{{ $histories->id }}</td>
-                                <td>{{ $histories->name }}</td>
-                                <td>{{ $histories->address }}</td>
-                                <td>{{ $histories->date_oder }}</td>
-                                <td>{{ $histories->email }}</td>
-                                <td>{{ $histories->payment }}</td>
+                                <td>{{ $bill_history->id }}</td>
+                                <td>{{ $bill_history->customer->name }}</td>
+                                <td>{{ $bill_history->customer->address }}</td>
+                                <td>{{ $bill_history->date_oder }}</td>
+                                <td>{{ $bill_history->customer->email }}</td>
+                                <td>{{ $bill_history->payment }}</td>
                                 <td>
-                                    {{ $histories->total }}
+                                    {{ $bill_history->total }}
                                 </td>
-                                <td><a href="/bill-detail/{{$histories->id}}">Detail</a></td>
+                                <td><a href="#">Detail</a></td>
                                 <td>Chưa xử lý</td>
                             </tr>
                             @endforeach

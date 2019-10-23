@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Scout\Searchable;
+use App\Models\Bill;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,9 @@ class User extends Authenticatable
       $array = $this->toArray();
 
       return array('name' => $array['name'],'email' => $array['email']);
-  }
+    }
+
+    public function bills() {
+        return $this->hasMany(Bill::class, 'user_id', 'id');
+    }
 }
