@@ -19,8 +19,4 @@ class CheckoutHistoryController extends Controller
 
         return view('checkout.checkout_history', compact('bills_history'));
     }
-
-    public function getCheckoutDetail($id_bill) {
-        
-    }
 }

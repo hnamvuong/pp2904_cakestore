@@ -148,9 +148,7 @@ class PageController extends Controller
                                         ->join('products', 'bill_details.id_product', '=', 'products.id')
                                         ->select('bills.id','bills.total', 'bill_details.unit_price', 'bill_details.quantity', 'products.name')
                                         ->get();
-                                        // dd($bill_detail);
-                                        
-                                    
+                                                                     
         return view('checkout.checkout_history_detail', compact('customer_detail', 'bill_detail'));
     }
 
