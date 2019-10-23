@@ -16,7 +16,11 @@
 		<form action="{{route('dathang')}}" method="post" class="beta-form-checkout">
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 			@if(Session::has('thongbao'))
-				<div class="alert alert-success">{{Session::get('thongbao')}}</div>
+				<div class="alert alert-success">{{Session::get('thongbao')}}
+					@if (Auth::check())
+					<a href="{{ route('lichsu') }}"> Xem đơn hàng tại ĐÂY!</a>
+					@endif
+				</div>
 			@endif
 			<div class="row">
 				<div class="col-sm-6">
@@ -101,7 +105,7 @@
 										<br>- Ngân hàng VCB, Chi nhánh Hà Nội
 									</div>
 								</li>
-								
+
 							</ul>
 						</div>
 						<div class="text-center"><button type="submit" class="beta-btn primary" href="#">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>

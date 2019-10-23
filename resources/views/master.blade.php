@@ -99,12 +99,92 @@
     function registerForm() {
         document.getElementById('getRegister').click();
     }
-
-    function showCart() {
-        jQuery(".cart-body").slideToggle(),!1;
-    }
 </script>
 
+<script>
+    $(document).ready(function() {    
+        $(document).on('click', '#newProductPagination > .pagination a', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            fetch_data(page);
+        });
+
+        function fetch_data(page) 
+        {
+            $.ajax({
+                url:"/fetch_data?page=" + page,
+                success:function(data) 
+                {
+                    $('#table_data_new_product').html(data);
+                },
+            })
+        }
+
+        $(document).on('click', '#saleProductPagination > .pagination a', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href').split('page=')[1];
+            fetch_data_sale_product(page);
+        });
+
+        function fetch_data_sale_product(page) 
+        {
+            $.ajax({
+                url:"/fetch_data_sale_product?page=" + page,
+                success:function(data) 
+                {
+                    $('#data_sale_product').html(data);
+                },
+            })
+        }
+
+        $(document).on('click', '#newProduct, #saleProduct', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href');
+            make_request(page);
+            count_cart();
+        });
+
+        function make_request(page) 
+        {
+            $.ajax({
+                url:page,
+                success:function(data) 
+                {
+                    $('#ajax_cart').html(data);
+                },
+            })
+        } 
+
+        function count_cart() 
+        {
+            $.ajax({
+                url:"/count_cart",
+                success:function(data) 
+                {
+                    $('#count_cart').html(data);
+                },
+            })
+        }  
+
+        $(document).on('click', '#delete_cart', function(event){
+            event.preventDefault();
+            var page = $(this).attr('href');
+            delete_cart(page);
+            count_cart();
+        });
+
+        function delete_cart(page) 
+        {
+            $.ajax({
+                url:page,
+                success:function(data) 
+                {
+                    $('#ajax_cart').html(data);
+                },
+            })
+        }  
+    })
+</script>
 @yield('script')
 
 </body>
