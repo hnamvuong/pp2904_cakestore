@@ -6,8 +6,8 @@
             Chi tiết đơn hàng
         </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Bill</a></li>
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/lich-su">Bill</a></li>
         <li class="active">List</li>
     </ol>
 </section>
@@ -55,7 +55,6 @@
             <table class="table m-table m-table--head-bg-success">
                 <thead>
                     <tr role="row">
-                        <th class="col-2">ID</th>
                         <th class="col-6">Tên sản phẩm</th>
                         <th class="col-2">Số lượng</th>
                         <th class="col-2">Giá tiền</th>
@@ -63,8 +62,6 @@
                 <tbody>
                     @foreach( $bill_detail as $bill_details)
                     <tr>
-
-                        <td class="col-2">{{ $bill_details->id }}</td>
                         <td class="col-6">{{ $bill_details->name }}</td>
                         <td class="col-2">{{ $bill_details->quantity }}</td>
                         <td class="col-2">{{ number_format($bill_details->unit_price) }} VNĐ</td>

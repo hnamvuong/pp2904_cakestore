@@ -137,6 +137,23 @@ class PageController extends Controller
         return redirect()->route('dathang')->with('thongbao', 'Đặt hàng thành công. ');
     }
 
+    public function getCheckoutDetail($id_bill) {
+        $customer_detail = DB::table('bills')->where('bills.id', $id_bill)
+                                            ->join('bill_details', 'bills.id', '=', 'bill_details.id_bill')
+                                            ->join('customers', 'bills.id_customer', '=', 'customers.id')
+                                            ->select('customers.name', 'customers.gender', 'customers.email', 'customers.address', 'customers.phone_number', 'customers.note', 'bills.date_oder', 'bills.total', 'bills.payment', 'bills.note')
+                                            ->first();
+        $bill_detail = DB::table('bills')->where('bills.id', $id_bill)
+                                        ->join('bill_details', 'bills.id', '=', 'bill_details.id_bill')
+                                        ->join('products', 'bill_details.id_product', '=', 'products.id')
+                                        ->select('bills.id','bills.total', 'bill_details.unit_price', 'bill_details.quantity', 'products.name')
+                                        ->get();
+                                        // dd($bill_detail);
+                                        
+                                    
+        return view('checkout.checkout_history_detail', compact('customer_detail', 'bill_detail'));
+    }
+
     public function getSearch(Request $request){
         $product = Product::where('name', 'like', '%'.$request->key.'%')->orWhere('unit_price', $request->key)->get();
 
