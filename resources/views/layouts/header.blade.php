@@ -46,16 +46,20 @@
                         Chao [ {{ Auth::user()->name }} ]
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="/lich-su">
+                        <i class="m-menu__link-icon flaticon-list-3"></i> Track My Bill
+                    </a>
+                        <a class="dropdown-item" href="/wishlist">
+                        <i class="m-menu__link-icon flaticon-list-3"></i> Wish List
+                    </a>
+
                         <a class="dropdown-item" href="#"
                         onclick="event.preventDefault();
                         document.getElementById('logout').submit();">
                         <i class="m-menu__link-icon flaticon flaticon-logout"></i> Logout
                     </a>
 
-                    <a class="dropdown-item" href="/lich-su">
-                        <i class="m-menu__link-icon flaticon-list-3"></i> Track My Bill
-                    </a>
-
+                    
                     @if (Auth::user()->name == 'Admin')
                     <a class="dropdown-item" href="{{ route('admin') }}">
                         <i class="m-menu__link-icon flaticon-list-3"></i> Manage

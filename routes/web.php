@@ -131,3 +131,7 @@ Route::get('member',[
     'as' => 'member',
     'uses' => 'MemberController@index'
 ]);
+
+Route::get('/wishlist', 'WishListController@wishlist')->middleware('auth');
+
+Route::get('/wishlist/add/{product_id}', 'WishListController@addProduct')->middleware('auth');

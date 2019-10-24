@@ -32,4 +32,8 @@ class Product extends Model
     public function bill_detail() {
         return $this->hasMany(BillDetail::class, 'id_product', 'id');
     }
+
+    public function wishlist() {
+        return $this->hasMany(WishList::class, 'product_id');
+    }
 }
