@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function bills() {
         return $this->hasMany(Bill::class, 'user_id', 'id');
     }
+
+    public function wishlist() {
+        return $this->hasMany(WishList::class, 'user_id');
+    }
 }
